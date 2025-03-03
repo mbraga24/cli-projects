@@ -2,6 +2,18 @@ package com.taskmanager;
 
 import java.util.Date;
 
+/**
+ * Encapsulation and Inheritance
+ *
+ * Encapsulation: restricting direct access to an object's data and modifying through
+ * controlled methods (getters, setters, or behaviors)
+ *
+ * Inherirance: Allows a subclass to extend the properties and behaviors of a parent class.
+ * -> Parent: Task is parent and define attributes and methods
+ * -> Subclass: WorkTask is a subclass that extends Task, inheriting its fields and methods while adding new
+ * behavior
+ * -> Reusability: Instead of rewriting the same logic, WorkTask will reuse Task's methods to enhance them.
+ */
 public class Task {
 
     private int id;
