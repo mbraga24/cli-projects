@@ -5,14 +5,14 @@ import java.util.Date;
 /**
  * Encapsulation and Inheritance
  *
- * Encapsulation: restricting direct access to an object's data and modifying through
+ * 🗒Encapsulation: Restricting direct access to an object's data and modifying it through
  * controlled methods (getters, setters, or behaviors)
  *
- * Inherirance: Allows a subclass to extend the properties and behaviors of a parent class.
- * -> Parent: Task is parent and define attributes and methods
- * -> Subclass: WorkTask is a subclass that extends Task, inheriting its fields and methods while adding new
+ * 🗒Inherirance: Allows a subclass to extend the properties and behaviors of a parent class.
+ * 👉 Parent: Task is parent and define attributes and methods
+ * 👉 Subclass: WorkTask is a subclass that extends Task, inheriting its fields and methods while adding new
  * behavior
- * -> Reusability: Instead of rewriting the same logic, WorkTask will reuse Task's methods to enhance them.
+ * 👉 Reusability: Instead of rewriting the same logic, WorkTask will reuse Task's methods to enhance them.
  */
 public class Task {
 
@@ -22,12 +22,20 @@ public class Task {
     private Date dueDate;
     private boolean completed;
 
-   public Task(int id, String title, String description, Date dueDate, boolean completed) {
+   public Task(int id, String title, String description, Date dueDate) {
        this.id = id;
        this.title = title;
        this.description = description;
        this.dueDate = dueDate;
        this.completed = false;
+   }
+
+    /**
+     * Getter for Id
+     * @return
+     */
+   public int getId() {
+       return id;
    }
 
     /**
