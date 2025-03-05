@@ -1,6 +1,7 @@
 package com.taskmanager;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 🗒Inherirance: Allows a subclass to extend the properties and behaviors of a parent class.
@@ -9,7 +10,7 @@ import java.util.Date;
  * behavior
  * 👉 Reusability: Instead of rewriting the same logic, WorkTask will reuse Task's methods to enhance them.
  */
-public class PersonalTask extends Task{
+public class PersonalTask extends Task {
 
     private String location;
 

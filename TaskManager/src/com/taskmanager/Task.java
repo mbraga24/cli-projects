@@ -1,6 +1,7 @@
 package com.taskmanager;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Encapsulation and Inheritance
@@ -39,6 +40,22 @@ public class Task {
    }
 
     /**
+     * Getter for DueDate
+     * @return
+     */
+   public Date getDueDate() {
+       return this.dueDate;
+   }
+
+    /**
+     * Getter for Title
+     * @return
+     */
+   public String getTitle() {
+       return this.title;
+   }
+
+    /**
      * Mark task as completed
      */
    public void markAsCompleted() {
@@ -60,4 +77,5 @@ public class Task {
        System.out.println("ID: " + id + " | Title: " + title + " | Due: " + dueDate + " | Completed: " + completed);
    }
 
+    public abstract void sort(List<Task> tasks);
 }

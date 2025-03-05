@@ -22,4 +22,5 @@ public class WorkTask extends Task {
         super.displayTask();
         System.out.println("Project: " + projectName);
     }
+
 }
