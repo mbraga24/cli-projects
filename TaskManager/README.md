@@ -28,6 +28,8 @@
 ### Task Manager (Singleton)
 * Task Collection → Holds and manages all tasks.
 * Task Operations → Methods for adding, retrieving, and modifying tasks.
+* Task Count Tracking → Provides method to retrieve the total number of tasks.
+* Task Retrieval → Implements method to fetch a task by its unique identifier. 
 ### Task Sorting (Strategy Pattern)
 * Sort By Due Date → Orders tasks based on deadlines.
 * Sort By Title → Alphabetically arranges tasks.
