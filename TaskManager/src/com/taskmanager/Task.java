@@ -77,5 +77,4 @@ public class Task {
        System.out.println("ID: " + id + " | Title: " + title + " | Due: " + dueDate + " | Completed: " + completed);
    }
 
-    public abstract void sort(List<Task> tasks);
 }

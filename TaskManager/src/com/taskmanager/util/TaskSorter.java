@@ -22,6 +22,11 @@ import java.util.List;
  */
 interface TaskSorter {
 
+    /**
+     * sort() - Interface-Based Polymorphism
+     * Calls the correct sorting method based on user assigned strategy
+     * @param tasks
+     */
     void sort(List<Task> tasks);
 
 }

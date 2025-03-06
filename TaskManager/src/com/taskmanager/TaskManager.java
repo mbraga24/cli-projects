@@ -46,6 +46,10 @@ public class TaskManager {
         tasks.add(task);
     }
 
+    /**
+     * listTasks() - Method Overriding (Inheritance-Based Polymorphism)
+     * Calls the appropriate overridden method dynamically
+     */
     public void listTasks() {
         for (Task task : tasks) {
             task.displayTask();
@@ -61,6 +65,10 @@ public class TaskManager {
 
     public void removeTask(int taskId) {
         tasks.removeIf(task -> task.getId() == taskId);
+    }
+
+    public int getTaskCount() {
+        return tasks.size();
     }
 
 }
