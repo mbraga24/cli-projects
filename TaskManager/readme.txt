@@ -1,4 +1,4 @@
-# Task Manager CLI - Conceptual Design Outline
+#Task Manager CLI - Conceptual Design Outline
 
 ##  Core Functionalities
 Task CRUD Operations: Create, View, Update, Delete tasks.
