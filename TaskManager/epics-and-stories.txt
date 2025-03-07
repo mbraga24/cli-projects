@@ -1,0 +1,52 @@
+🟣 Epic: Task CRUD Operations
+✅ Covers creating, reading, updating, and deleting tasks in the system.
+🔹 User Stories under this Epic:
+
+As a user, I want to create a new task, so that I can add an item to my to-do list.
+As a user, I want to view all tasks, so that I can see my current responsibilities.
+As a user, I want to update a task, so that I can modify its details or due date.
+As a user, I want to delete a task, so that I can remove unnecessary or completed items.
+As a user, I want to view a task’s details, so that I can see its description, priority, and due date.
+
+🟣 Epic: Task Management Core Features
+✅ Covers basic task operations (CRUD)
+🔹 User Stories under this Epic:
+
+As a user, I want to create a new task, so that I can add an item to my to-do list.
+As a user, I want to view all tasks, so that I can see my current responsibilities.
+As a user, I want to update a task, so that I can modify its details or due date.
+As a user, I want to delete a task, so that I can remove unnecessary or completed items.
+As a user, I want to view a task’s details, so that I can see its description, priority, and due date.
+
+🟣 Epic: Task Organization & Filtering
+✅ Covers categorization, sorting, and filtering of tasks
+🔹 User Stories under this Epic:
+
+As a user, I want to categorize a task as work-related, so that I can separate professional responsibilities.
+As a user, I want to categorize a task as personal, so that I can organize non-work activities.
+As a user, I want to view tasks by category, so that I can focus on specific areas of my life.
+As a user, I want to sort tasks by due date, so that I can prioritize urgent items.
+As a user, I want to sort tasks alphabetically, so that I can quickly find specific tasks.
+As a user, I want to filter tasks by category, so that I can view only work-related or personal tasks as needed.
+
+🟣 Epic: Task Completion & Tracking
+✅ Covers marking and tracking completed tasks
+🔹 User Stories under this Epic:
+
+As a user, I want to mark a task as completed, so that I can track my progress.
+As a user, I want to view only completed tasks, so that I can review my past accomplishments.
+
+🟣 Epic: Data Persistence & Storage
+✅ Covers saving and retrieving tasks across sessions
+🔹 User Stories under this Epic:
+
+As a user, I want my tasks to be saved automatically, so that my to-do list is available even after closing the application.
+As a user, I want to retrieve my tasks from storage, so that I can continue my work seamlessly across sessions.
+
+🟣 Epic: User Interaction & CLI Navigation
+✅ Covers user experience via the CLI
+🔹 User Stories under this Epic:
+
+As a user, I want to navigate through a menu system, so that I can easily manage my tasks without confusion.
+As a user, I want to enter commands to create, update, or delete tasks, so that I can modify my to-do list efficiently.
+As a user, I want to see clear messages and feedback for each action, so that I know if my command was successful.
