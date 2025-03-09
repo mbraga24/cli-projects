@@ -1,5 +1,7 @@
 package com.taskmanager.util;
+
 import com.taskmanager.Task;
+
 import java.util.List;
 
 class SortByDueDate implements TaskSorter {

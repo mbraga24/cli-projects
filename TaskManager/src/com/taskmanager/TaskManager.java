@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * 🧩 Singleton Pattern | Creational Pattern
  * Ensures only one instance of a class exists globally.
- * TaskManager is implemented as a Singleton so that all tasks are stored in a single, shared instance.
+ * com.taskmanager.TaskManager is implemented as a Singleton so that all tasks are stored in a single, shared instance.
  *
- * The taskManagerInstance variable in TaskManager is declared as static, ensuring that only one
- * instance of TaskManager exists throughout the application. The variable taskManagerInstance
+ * The taskManagerInstance variable in com.taskmanager.TaskManager is declared as static, ensuring that only one
+ * instance of com.taskmanager.TaskManager exists throughout the application. The variable taskManagerInstance
  * belongs to the class itself, not to any specific object.
  *
  * ☑ Good to use cases:
@@ -31,7 +31,7 @@ public class TaskManager {
     }
 
     /**
-     * Statis method is the only way to access the instance of TaskManager.
+     * Statis method is the only way to access the instance of com.taskmanager.TaskManager.
      * Static method provides global access to the single instance.
      * @return
      */

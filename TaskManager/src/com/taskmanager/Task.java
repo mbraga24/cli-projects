@@ -1,7 +1,6 @@
 package com.taskmanager;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Encapsulation and Inheritance
@@ -10,10 +9,10 @@ import java.util.List;
  * controlled methods (getters, setters, or behaviors)
  *
  * 🗒Inherirance: Allows a subclass to extend the properties and behaviors of a parent class.
- * 👉 Parent: Task is parent and define attributes and methods
- * 👉 Subclass: WorkTask is a subclass that extends Task, inheriting its fields and methods while adding new
+ * 👉 Parent: com.taskmanager.Task is parent and define attributes and methods
+ * 👉 Subclass: com.taskmanager.WorkTask is a subclass that extends com.taskmanager.Task, inheriting its fields and methods while adding new
  * behavior
- * 👉 Reusability: Instead of rewriting the same logic, WorkTask will reuse Task's methods to enhance them.
+ * 👉 Reusability: Instead of rewriting the same logic, com.taskmanager.WorkTask will reuse com.taskmanager.Task's methods to enhance them.
  */
 public class Task {
 
