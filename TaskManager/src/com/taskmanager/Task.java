@@ -73,7 +73,11 @@ public class Task {
      * Return all data from a task
      */
    public void displayTask() {
-       System.out.println("ID: " + id + " | Title: " + title + " | Due: " + dueDate + " | Completed: " + completed);
+       System.out.println("- ID: " + id +
+               "\n- Title: " + title +
+               "\n- Description: " + description +
+               "\n- Due: " + dueDate +
+               "\n- Completed: " + completed);
    }
 
 }

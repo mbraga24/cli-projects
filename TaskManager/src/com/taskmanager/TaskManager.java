@@ -67,6 +67,10 @@ public class TaskManager {
         tasks.removeIf(task -> task.getId() == taskId);
     }
 
+    public void clearTasks() {
+        tasks.clear();
+    }
+
     public int getTaskCount() {
         return tasks.size();
     }
