@@ -102,7 +102,7 @@ public class TaskManagerTest {
         String printedOutput = outputStream.toString().trim();
 
         // THEN: The printed output should match expected task details
-        String expectedOutput = "- ID: 1\n- Title: Task\n- Description: My task\n- Due: null\n- Completed: false";
+        String expectedOutput = "- Task Id: 1 | Title: Task | Description: My task | DueDate: null | Completed: false";
 
         assertEquals(expectedOutput, printedOutput, "listTasks() should print correct task details");
     }
