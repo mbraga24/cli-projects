@@ -1,13 +1,15 @@
 package com.taskmanager.util;
 import com.taskmanager.Task;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-class SortByTitle implements TaskSorter {
+public class SortByTitle implements TaskSorter {
 
     @Override
     public void sort(List<Task> tasks) {
-        tasks.sort((t1, t2) -> t1.getTitle().compareToIgnoreCase(t2.getTitle()));
+        Collections.sort(tasks, Comparator.comparing(Task::getTitle));
     }
 
 }

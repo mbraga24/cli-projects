@@ -2,13 +2,15 @@ package com.taskmanager.util;
 
 import com.taskmanager.Task;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-class SortByDueDate implements TaskSorter {
+public class SortByDueDate implements TaskSorter {
 
     @Override
     public void sort(List<Task> tasks) {
-        tasks.sort((t1, t2) -> t1.getDueDate().compareTo(t2.getDueDate()));
+        Collections.sort(tasks, Comparator.comparing(Task::getDueDate));
     }
 
 }

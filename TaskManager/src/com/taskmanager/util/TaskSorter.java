@@ -20,7 +20,7 @@ import java.util.List;
  * Slightly More Boilerplate: each strategy needs its own file
  *
  */
-interface TaskSorter {
+public interface TaskSorter {
 
     /**
      * sort() - Interface-Based Polymorphism
