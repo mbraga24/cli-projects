@@ -1,5 +1,7 @@
 package com.taskmanager;
 
+import com.taskmanager.util.TaskSorter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +94,10 @@ public class TaskManager {
             }
         }
         return null;
+    }
+
+    public void sortTasks(TaskSorter sorter) {
+        sorter.sort(tasks);
     }
 
 }
