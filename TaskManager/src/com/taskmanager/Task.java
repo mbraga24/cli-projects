@@ -30,43 +30,40 @@ public class Task {
        this.completed = false;
    }
 
-    /**
-     * Getter for Id
-     * @return
-     */
-   public int getId() {
-       return id;
-   }
+    public Task(int id, String title, String description, Date dueDate, boolean completed) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.completed = completed; // for updating a task
+    }
 
-    /**
-     * Getter for DueDate
-     * @return
-     */
-   public Date getDueDate() {
-       return this.dueDate;
-   }
+    public int getId() {
+        return this.id;
+    }
 
-    /**
-     * Getter for Title
-     * @return
-     */
-   public String getTitle() {
-       return this.title;
-   }
+    public String getTitle() {
+        return this.title;
+    }
 
-    /**
-     * Mark task as completed
-     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    public Date getDueDate() {
+        return this.dueDate;
+    }
+
+    public void setCompleted(boolean isComplete) {
+        this.completed = isComplete;
+    }
+
+    public boolean getCompleted() {
+        return this.completed;
+    }
+
    public void markAsCompleted() {
        this.completed = true;
-   }
-
-    /**
-     * Return if a task has been completed
-     * @return
-     */
-   public boolean isCompleted() {
-       return completed;
    }
 
     /**

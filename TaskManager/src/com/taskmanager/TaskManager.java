@@ -63,6 +63,16 @@ public class TaskManager {
         return null;
     }
 
+    public void updateTask(Task task) {
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getId() == task.getId()) {
+                tasks.set(i, task);
+                return;
+            }
+        }
+        System.out.println("xxxxxxx Task Not Found xxxxxxx");
+    }
+
     public void removeTask(int taskId) {
         tasks.removeIf(task -> task.getId() == taskId);
     }
@@ -73,6 +83,15 @@ public class TaskManager {
 
     public int getTaskCount() {
         return tasks.size();
+    }
+
+    public Task returnTask(int taskId) {
+        for (Task task : tasks) {
+            if (task.getId() == taskId) {
+                return task;
+            }
+        }
+        return null;
     }
 
 }
