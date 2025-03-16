@@ -1,5 +1,5 @@
 package com.taskmanager.util;
-import com.taskmanager.Task;
+import com.taskmanager.task.Task;
 
 import java.util.Collections;
 import java.util.Comparator;

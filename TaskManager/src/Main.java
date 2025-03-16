@@ -1,5 +1,9 @@
-import com.taskmanager.Task;
-import com.taskmanager.TaskManager;
+import com.taskmanager.factory.TaskFactory;
+import com.taskmanager.task.PersonalTask;
+import com.taskmanager.task.Task;
+import com.taskmanager.service.TaskManager;
+import com.taskmanager.task.TaskType;
+import com.taskmanager.task.WorkTask;
 import com.taskmanager.util.SortByDueDate;
 import com.taskmanager.util.SortById;
 import com.taskmanager.util.SortByTitle;
@@ -59,21 +63,33 @@ public class Main {
     }
 
     private static void addTask() {
+        System.out.println("Enter Task Type (WORK/PERSONAL):");
+        String taskTypeInput = scanner.nextLine().toUpperCase();
+        TaskType type = TaskType.valueOf(taskTypeInput);
+
         System.out.println("Enter Task Title: ");
         String title = scanner.nextLine();
         System.out.println("Enter Task Description: ");
         String description = scanner.nextLine();
+
+        System.out.println(type == TaskType.WORK ? "Enter Project Name: " : "Enter Location: ");
+        String extraDetail  = scanner.nextLine();
+
         System.out.println("Enter Due Date (yyyy-mm-dd): ");
         Date dueDate = new Date();
-        Task newTask = new Task(taskManager.getTaskCount() + 1, title, description, dueDate);
+
+        Task newTask = TaskFactory.createTask(type, taskManager.getTaskCount() + 1, title, description, dueDate, extraDetail);
         taskManager.addTask(newTask);
-        System.out.println("Task added successfully!");
+        System.out.println("====================");
+        System.out.println("Task Created Successfully!");
+        System.out.println("====================");
     }
 
     private static void updateTask() {
         String updateTitle;
         String updateDescription;
         String updateDueDate;
+        String updateExtraDetail;
         boolean  updateCompleted = false;
 
         System.out.println("===== Choose The Task You Would Like To Update =====");
@@ -91,31 +107,39 @@ public class Main {
         task.displayTask();
         System.out.println("===============");
 
-        System.out.println("Enter new title (press Enter to keep  [" + task.getTitle() + "]): ");
+        System.out.format("Enter new title (press Enter to keep  [ %s ]):\n", task.getTitle());
         updateTitle = scanner.nextLine();
         if (updateTitle.isEmpty()) {
             updateTitle = task.getTitle();
         }
 
-        System.out.println("Enter new description (press Enter to keep [" + task.getDescription() + "])");
+        System.out.format("Enter new description (press Enter to keep [ %s ]):\n", task.getDescription());
         updateDescription = scanner.nextLine();
         if (updateDescription.isEmpty()) {
             updateDescription = task.getDescription();
         }
 
-        System.out.println("Enter new Due Date (press Enter to keep [" + task.getDueDate() + "])");
+        String extraDetail = task.getTaskType() == TaskType.WORK ? "Project Name" : "Location";
+
+        System.out.format("Enter new %s (press Enter to keep [%s]):\n", extraDetail, extraDetail);
+        updateExtraDetail = scanner.nextLine();
+        if (updateExtraDetail.isEmpty()) {
+            updateExtraDetail = task.getExtraDetails();
+        }
+
+        System.out.format("Enter new Due Date (press Enter to keep [ %s ]):\n", task.getDueDate());
         updateDueDate = scanner.nextLine();
         if (updateDueDate.isEmpty()) {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
             updateDueDate = formatter.format(task.getDueDate());
         }
 
-        System.out.print("Mark as completed? (y/n, current: " + task.getCompleted() + "): ");
+        System.out.format("Mark as completed? (y/n, current: %s):\n", task.getCompleted());
         String completedInput = scanner.nextLine();
         if (completedInput.equalsIgnoreCase("y")) {
             updateCompleted = true;
         }
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
         Date updatedDate = null;
 
         try {
@@ -126,7 +150,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        Task updatedTask = new Task(task.getId(), updateTitle, updateDescription, updatedDate, updateCompleted);
+        Task updatedTask = TaskFactory.createTask(task.getTaskType(), task.getId(), updateTitle, updateDescription, updatedDate, updateExtraDetail);
+        updatedTask.setCompleted(updateCompleted);
         taskManager.updateTask(updatedTask);
 
         System.out.println("====================");
@@ -140,7 +165,8 @@ public class Main {
         System.out.println("  1. Sort by Due Date");
         System.out.println("  2. Sort Alphabetically (Title)");
         System.out.println("  3. Sort by Task ID");
-        System.out.print("Enter your choice (1-3): ");
+        System.out.println("  4. Sort by Task Category");
+        System.out.print("Enter your choice (1-4): ");
 
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -157,6 +183,9 @@ public class Main {
             case 3:
                 taskManager.sortTasks(new SortById());
                 taskManager.listTasks();
+                break;
+            case 4:
+                chooseCategory();
                 break;
             default:
                 System.out.println("Invalid option. Try again.");
@@ -187,6 +216,26 @@ public class Main {
         }
     }
 
+    static void chooseCategory() {
+        System.out.println("Choose category [WORK/PERSONAL]:");
+        System.out.println("1. Work");
+        System.out.println("2. Personal");
+        System.out.print("Enter your choice (1-2): ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch(choice) {
+            case 1:
+                taskManager.displayByTaskType(TaskType.WORK);
+                break;
+            case 2:
+                taskManager.displayByTaskType(TaskType.PERSONAL);
+                break;
+            default:
+                System.out.println("Invalid option. Try again");
+        }
+    }
+
     private static void checkIfTaskIsValid(Task task) {
         if (task == null) {
             System.out.println("Task with ID: " + task.getId() + " not found.");
@@ -204,12 +253,14 @@ public class Main {
 
         int firstTaskId = taskManager.getTaskCount() + 1;
 
-        Task defaultTask1 = new Task(firstTaskId, "Make your bed", "Accomplish first task of the day.", date1);
-        Task defaultTask2 = new Task(firstTaskId + 1, "Wash dishes", "Wash dishes after lunch.", date2);
-        Task defaultTask3 = new Task(firstTaskId + 2, "Clean bathtub", "Clean bathtub once a week.", date3);
+        Task defaultPersonalTask1 = new PersonalTask(firstTaskId, "Make your bed", "Accomplish first task of the day.", date1, "home");
+        Task defaultPersonalTask2 = new PersonalTask(firstTaskId + 1, "Wash dishes", "Wash dishes after lunch.", date2, "home");
+        Task defaultPersonalTask3 = new PersonalTask(firstTaskId + 2, "Clean bathtub", "Clean bathtub once a week.", date3, "home");
+        Task defaultWorkTask1 = new WorkTask(firstTaskId + 3, "Work on meeting documents", "Review Thursday 3pm meeting.", date3, "Project Name1");
 
-        taskManager.addTask(defaultTask1);
-        taskManager.addTask(defaultTask2);
-        taskManager.addTask(defaultTask3);
+        taskManager.addTask(defaultPersonalTask1);
+        taskManager.addTask(defaultPersonalTask2);
+        taskManager.addTask(defaultPersonalTask3);
+        taskManager.addTask(defaultWorkTask1);
     }
 }

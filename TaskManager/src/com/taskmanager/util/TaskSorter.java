@@ -1,12 +1,12 @@
 package com.taskmanager.util;
 
-import com.taskmanager.Task;
+import com.taskmanager.task.Task;
 
 import java.util.List;
 
 /**
  * 🧩 Strategy Pattern | Behavioral Pattern
- * Allows selecting an algorithm dynamically at runtime.
+ * TaskSorter defines a sorting contract. Allows selecting an algorithm dynamically at runtime.
  * The TaskSorter uses the Strategy Pattern to allow sorting by different criteria (due date, title, etc.) dynamically.
  *
  * Separating classes for each strategy:

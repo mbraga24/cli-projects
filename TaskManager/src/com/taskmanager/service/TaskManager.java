@@ -1,5 +1,7 @@
-package com.taskmanager;
+package com.taskmanager.service;
 
+import com.taskmanager.task.Task;
+import com.taskmanager.task.TaskType;
 import com.taskmanager.util.TaskSorter;
 
 import java.util.ArrayList;
@@ -8,10 +10,10 @@ import java.util.List;
 /**
  * 🧩 Singleton Pattern | Creational Pattern
  * Ensures only one instance of a class exists globally.
- * com.taskmanager.TaskManager is implemented as a Singleton so that all tasks are stored in a single, shared instance.
+ * com.taskmanager.service.TaskManager is implemented as a Singleton so that all tasks are stored in a single, shared instance.
  *
- * The taskManagerInstance variable in com.taskmanager.TaskManager is declared as static, ensuring that only one
- * instance of com.taskmanager.TaskManager exists throughout the application. The variable taskManagerInstance
+ * The taskManagerInstance variable in com.taskmanager.service.TaskManager is declared as static, ensuring that only one
+ * instance of com.taskmanager.service.TaskManager exists throughout the application. The variable taskManagerInstance
  * belongs to the class itself, not to any specific object.
  *
  * ☑ Good to use cases:
@@ -33,7 +35,7 @@ public class TaskManager {
     }
 
     /**
-     * Statis method is the only way to access the instance of com.taskmanager.TaskManager.
+     * Statis method is the only way to access the instance of com.taskmanager.service.TaskManager.
      * Static method provides global access to the single instance.
      * @return
      */
@@ -94,6 +96,14 @@ public class TaskManager {
             }
         }
         return null;
+    }
+
+    public void displayByTaskType(TaskType type) {
+        for (Task task : tasks) {
+            if (task.getTaskType().equals(type)) {
+                task.displayTask();
+            }
+        }
     }
 
     public void sortTasks(TaskSorter sorter) {

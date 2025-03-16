@@ -1,5 +1,5 @@
-import com.taskmanager.Task;
-import com.taskmanager.TaskManager;
+import com.taskmanager.task.Task;
+import com.taskmanager.service.TaskManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

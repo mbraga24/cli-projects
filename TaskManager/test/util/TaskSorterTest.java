@@ -1,6 +1,6 @@
 package util;
 
-import com.taskmanager.Task;
+import com.taskmanager.task.Task;
 import com.taskmanager.util.SortByDueDate;
 import com.taskmanager.util.SortById;
 import com.taskmanager.util.SortByTitle;
