@@ -1,10 +1,10 @@
 package com.taskmanager.service;
 
+import com.taskmanager.storage.TaskStorage;
 import com.taskmanager.task.Task;
 import com.taskmanager.task.TaskType;
 import com.taskmanager.util.TaskSorter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,10 +28,10 @@ public class TaskManager {
     private List<Task> tasks;
 
     /**
-     * Private constructor prevents direct instantiation
+     * Private constructor prevents direct instantiation / Loads tasks from storage
      */
     private TaskManager() {
-        tasks = new ArrayList<>();
+        this.tasks = TaskStorage.loadTasks();
     }
 
     /**
@@ -47,7 +47,8 @@ public class TaskManager {
     }
 
     public void addTask(Task task) {
-        tasks.add(task);
+            tasks.add(task);
+            TaskStorage.saveTasks(tasks); // Saving tasks to storage after adding a task
     }
 
     /**
@@ -71,14 +72,18 @@ public class TaskManager {
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getId() == task.getId()) {
                 tasks.set(i, task);
+                TaskStorage.saveTasks(tasks); // Save tasks in storage after updating a task
                 return;
             }
         }
-        System.out.println("xxxxxxx Task Not Found xxxxxxx");
+        System.out.println("xxxxxxxxxxxxxxx");
+        System.out.println("Task Not Found");
+        System.out.println("xxxxxxxxxxxxxxx");
     }
 
     public void removeTask(int taskId) {
         tasks.removeIf(task -> task.getId() == taskId);
+        TaskStorage.saveTasks(tasks); // Save tasks in storage after removing a task
     }
 
     public void clearTasks() {
