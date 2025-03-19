@@ -13,8 +13,8 @@ public class PersonalTask extends Task {
 
     private String location;
 
-    public PersonalTask(int id, String title, String description, Date dueDate, String location) {
-        super(id, title, description, dueDate, TaskType.PERSONAL); // constructor chaining
+    public PersonalTask(String title, String description, Date dueDate, String location) {
+        super(title, description, dueDate, TaskType.PERSONAL); // constructor chaining
         this.location = location;
     }
 

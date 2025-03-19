@@ -13,8 +13,8 @@ public class WorkTask extends Task {
 
     private String projectName;
 
-    public WorkTask(int id, String title, String description, Date dueDate, String projectName) {
-        super(id, title, description, dueDate, TaskType.WORK); // constructor chaining
+    public WorkTask(String title, String description, Date dueDate, String projectName) {
+        super(title, description, dueDate, TaskType.WORK); // constructor chaining
         this.projectName = projectName;
     }
 
