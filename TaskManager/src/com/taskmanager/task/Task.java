@@ -1,5 +1,6 @@
 package com.taskmanager.task;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,8 +16,9 @@ import java.util.Date;
  * behavior
  * 👉 Reusability: Instead of rewriting the same logic, com.taskmanager.task.WorkTask will reuse com.taskmanager.task.Task's methods to enhance them.
  */
-public abstract class Task {
+public abstract class Task implements Serializable {
 
+    private static int idCounter = 0;
     private int id;
     private String title;
     private String description;
@@ -24,8 +26,8 @@ public abstract class Task {
     private TaskType type;
     private boolean completed;
 
-   public Task(int id, String title, String description, Date dueDate, TaskType type) {
-       this.id = id;
+   public Task(String title, String description, Date dueDate, TaskType type) {
+       this.id = ++idCounter;
        this.title = title;
        this.description = description;
        this.dueDate = dueDate;
@@ -33,8 +35,8 @@ public abstract class Task {
        this.type = type;
    }
 
-    public Task(int id, String title, String description, Date dueDate, boolean completed, TaskType type) {
-        this.id = id;
+    public Task(String title, String description, Date dueDate, boolean completed, TaskType type) {
+        this.id = ++idCounter;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
