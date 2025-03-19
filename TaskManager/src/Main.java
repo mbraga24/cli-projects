@@ -1,4 +1,5 @@
 import com.taskmanager.factory.TaskFactory;
+import com.taskmanager.storage.TaskStorage;
 import com.taskmanager.task.PersonalTask;
 import com.taskmanager.task.Task;
 import com.taskmanager.service.TaskManager;
@@ -251,12 +252,10 @@ public class Main {
         Date date2 = Date.from(localDatePlusTwo.atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date date3 = Date.from(localDatePlusFive.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        int firstTaskId = taskManager.getTaskCount() + 1;
-
-        Task defaultPersonalTask1 = new PersonalTask(firstTaskId, "Make your bed", "Accomplish first task of the day.", date1, "home");
-        Task defaultPersonalTask2 = new PersonalTask(firstTaskId + 1, "Wash dishes", "Wash dishes after lunch.", date2, "home");
-        Task defaultPersonalTask3 = new PersonalTask(firstTaskId + 2, "Clean bathtub", "Clean bathtub once a week.", date3, "home");
-        Task defaultWorkTask1 = new WorkTask(firstTaskId + 3, "Work on meeting documents", "Review Thursday 3pm meeting.", date3, "Project Name1");
+        Task defaultPersonalTask1 = new PersonalTask("Make your bed", "Accomplish first task of the day.", date1, "home");
+        Task defaultPersonalTask2 = new PersonalTask("Wash dishes", "Wash dishes after lunch.", date2, "home");
+        Task defaultPersonalTask3 = new PersonalTask("Clean bathtub", "Clean bathtub once a week.", date3, "home");
+        Task defaultWorkTask1 = new WorkTask("Work on meeting documents", "Review Thursday 3pm meeting.", date3, "Project Name1");
 
         taskManager.addTask(defaultPersonalTask1);
         taskManager.addTask(defaultPersonalTask2);
