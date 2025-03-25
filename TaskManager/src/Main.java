@@ -1,8 +1,7 @@
 import com.taskmanager.factory.TaskFactory;
-import com.taskmanager.storage.TaskStorage;
 import com.taskmanager.task.PersonalTask;
 import com.taskmanager.task.Task;
-import com.taskmanager.service.TaskManager;
+import com.taskmanager.task.TaskManagerService;
 import com.taskmanager.task.TaskType;
 import com.taskmanager.task.WorkTask;
 import com.taskmanager.util.SortByDueDate;
@@ -19,7 +18,7 @@ import java.util.Scanner;
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static TaskManager taskManager = TaskManager.getTaskManagerInstance();
+    private static TaskManagerService taskManagerService = TaskManagerService.getTaskManagerInstance();
 
     public static void main(String[] args) {
 
@@ -79,8 +78,8 @@ public class Main {
         System.out.println("Enter Due Date (yyyy-mm-dd): ");
         Date dueDate = new Date();
 
-        Task newTask = TaskFactory.createTask(type, taskManager.getTaskCount() + 1, title, description, dueDate, extraDetail);
-        taskManager.addTask(newTask);
+        Task newTask = TaskFactory.createTask(type, taskManagerService.getTaskCount() + 1, title, description, dueDate, extraDetail);
+        taskManagerService.addTask(newTask);
         System.out.println("====================");
         System.out.println("Task Created Successfully!");
         System.out.println("====================");
@@ -94,13 +93,13 @@ public class Main {
         boolean  updateCompleted = false;
 
         System.out.println("===== Choose The Task You Would Like To Update =====");
-        taskManager.listTasks();
+        taskManagerService.listTasks();
         System.out.println("Enter Task ID: ");
 
         int choiceId = scanner.nextInt();
         scanner.nextLine();
 
-        Task task = taskManager.returnTask(choiceId);
+        Task task = taskManagerService.returnTask(choiceId);
 
         checkIfTaskIsValid(task);
 
@@ -153,7 +152,7 @@ public class Main {
 
         Task updatedTask = TaskFactory.createTask(task.getTaskType(), task.getId(), updateTitle, updateDescription, updatedDate, updateExtraDetail);
         updatedTask.setCompleted(updateCompleted);
-        taskManager.updateTask(updatedTask);
+        taskManagerService.updateTask(updatedTask);
 
         System.out.println("====================");
         System.out.println("Task Updated Successfully!");
@@ -174,16 +173,16 @@ public class Main {
 
         switch(choice) {
             case 1:
-                taskManager.sortTasks(new SortByDueDate());
-                taskManager.listTasks();
+                taskManagerService.sortTasks(new SortByDueDate());
+                taskManagerService.listTasks();
                 break;
             case 2:
-                taskManager.sortTasks(new SortByTitle());
-                taskManager.listTasks();
+                taskManagerService.sortTasks(new SortByTitle());
+                taskManagerService.listTasks();
                 break;
             case 3:
-                taskManager.sortTasks(new SortById());
-                taskManager.listTasks();
+                taskManagerService.sortTasks(new SortById());
+                taskManagerService.listTasks();
                 break;
             case 4:
                 chooseCategory();
@@ -196,7 +195,7 @@ public class Main {
     private static void markTaskCompleted() {
         System.out.println("Enter task ID to complete: ");
         int id = Integer.parseInt(scanner.nextLine());
-        Task task = taskManager.getTaskById(id);
+        Task task = taskManagerService.getTaskById(id);
         if (task != null) {
             task.markAsCompleted();
             System.out.println("Task marked as completed.");
@@ -208,9 +207,9 @@ public class Main {
     private static void removeTask() {
         System.out.println("Enter task ID to remove: ");
         int id = Integer.parseInt(scanner.nextLine());
-        Task task = taskManager.getTaskById(id);
+        Task task = taskManagerService.getTaskById(id);
         if (task != null) {
-            taskManager.removeTask(id);
+            taskManagerService.removeTask(id);
             System.out.println("Task removed successfully.");
         } else {
             System.out.println("Task not found.");
@@ -227,10 +226,10 @@ public class Main {
 
         switch(choice) {
             case 1:
-                taskManager.displayByTaskType(TaskType.WORK);
+                taskManagerService.displayByTaskType(TaskType.WORK);
                 break;
             case 2:
-                taskManager.displayByTaskType(TaskType.PERSONAL);
+                taskManagerService.displayByTaskType(TaskType.PERSONAL);
                 break;
             default:
                 System.out.println("Invalid option. Try again");
@@ -257,9 +256,9 @@ public class Main {
         Task defaultPersonalTask3 = new PersonalTask("Clean bathtub", "Clean bathtub once a week.", date3, "home");
         Task defaultWorkTask1 = new WorkTask("Work on meeting documents", "Review Thursday 3pm meeting.", date3, "Project Name1");
 
-        taskManager.addTask(defaultPersonalTask1);
-        taskManager.addTask(defaultPersonalTask2);
-        taskManager.addTask(defaultPersonalTask3);
-        taskManager.addTask(defaultWorkTask1);
+        taskManagerService.addTask(defaultPersonalTask1);
+        taskManagerService.addTask(defaultPersonalTask2);
+        taskManagerService.addTask(defaultPersonalTask3);
+        taskManagerService.addTask(defaultWorkTask1);
     }
 }
