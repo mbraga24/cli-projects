@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
         SetupData.initialize();
         do {
-            userInput = Actions.collectUserInput();
+            userInput = Actions.mainMenuUserInput();
             Actions.triggerOption(userInput);
-        } while (!userInput.equals("7"));
+        } while (!userInput.equals("8"));
     }
 }
