@@ -20,29 +20,21 @@ public class Utils {
      * @param message
      */
     public static void printMessage(String message) {
-        int countChars = 0;
-        char[] chars = message.toCharArray();
-        String[] messageArr = message.split(" ");
+        int plusIndex = message.indexOf('+');
+        String display = message.replace("+", "").trim();
 
-        for (int i = 0; i < messageArr.length; i++) {
-            if (messageArr[i].equals("+")) {
-                System.out.print("");
-            }
-            else {
-                System.out.print(messageArr[i] + " ");
-            }
-        }
+        System.out.println("=".repeat(plusIndex != -1 ? plusIndex : message.length()));
+        System.out.println(display);
+        System.out.println("=".repeat(plusIndex != -1 ? plusIndex : message.length()));
+    }
 
-        for (int i = 0; i < chars.length; i++) {
-            countChars++;
-            if (chars[i] == '+') break;
-        }
+    public static void printErrorMessage(String message) {
+        int plusIndex = message.indexOf('+');
+        String display = message.replace("+", "").trim();
 
-        System.out.println();
-        for (int i = 0; i < countChars; i++) {
-            System.out.print("=");
-        }
-        System.out.println();
+        System.out.println("-".repeat(plusIndex != -1 ? plusIndex : message.length()));
+        System.out.println(display);
+        System.out.println("-".repeat(plusIndex != -1 ? plusIndex : message.length()));
     }
 
 }
