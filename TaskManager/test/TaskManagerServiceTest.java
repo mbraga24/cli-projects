@@ -1,5 +1,5 @@
 import com.taskmanager.task.Task;
-import com.taskmanager.service.TaskManager;
+import com.taskmanager.task.TaskManagerService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,10 +11,10 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public class TaskManagerTest {
+public class TaskManagerServiceTest {
 
-    private TaskManager taskManager1;
-    private TaskManager taskManager2;
+    private TaskManagerService taskManagerService1;
+    private TaskManagerService taskManagerService2;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
@@ -24,8 +24,8 @@ public class TaskManagerTest {
         System.setOut(new PrintStream(outputStream));
 
         // GIVEN: A TaskManager instance is initialized before each test
-        taskManager1 = TaskManager.getTaskManagerInstance();
-        taskManager2 = TaskManager.getTaskManagerInstance();
+        taskManagerService1 = TaskManagerService.getTaskManagerInstance();
+        taskManagerService2 = TaskManagerService.getTaskManagerInstance();
     }
 
     @AfterEach
@@ -33,8 +33,8 @@ public class TaskManagerTest {
         // Restore original System.out after each test
         System.setOut(originalOut);
         // Remove all tasks from TaskManager
-        taskManager1.clearTasks();
-        taskManager2.clearTasks();
+        taskManagerService1.clearTasks();
+        taskManagerService2.clearTasks();
     }
 
     /**
@@ -48,20 +48,20 @@ public class TaskManagerTest {
         // WHEN: We can getInstance() multiple times (handled in setup)
 
         // THEN: Both instances should be the same
-        assertSame(taskManager1, taskManager2, "TaskManager should return the same instance");
+        assertSame(taskManagerService1, taskManagerService2, "TaskManager should return the same instance");
     }
 
     @Test
     void testAddTaskDoesNotAffectOtherInstances() {
         // GIVEN: A TaskManager instance with an initial task count
-        int initialCount = taskManager1.getTaskCount();
+        int initialCount = taskManagerService1.getTaskCount();
 
         // WHEN: A new task is added
         Task task = new Task(1, "Task", "" , new Date());
-        taskManager1.addTask(task);
+        taskManagerService1.addTask(task);
 
         // THEN: The task count should increase by 1
-        assertEquals(initialCount + 1, taskManager1.getTaskCount(), "Task count should increase by 1.");
+        assertEquals(initialCount + 1, taskManagerService1.getTaskCount(), "Task count should increase by 1.");
     }
 
     @Test
@@ -69,7 +69,7 @@ public class TaskManagerTest {
         // GIVEN: A new  TaskManager instance (initialized in setup) with an initial task count
 
         // WHEN: We retrieve the current task count
-        int  initialCount = taskManager1.getTaskCount();
+        int  initialCount = taskManagerService1.getTaskCount();
 
         System.out.println("===========> testgetTaskCountReturnsZero :: " + initialCount);
 
@@ -83,20 +83,20 @@ public class TaskManagerTest {
 
         // WHEN: A new task is added
         Task task = new Task(1, "Task", "" , new Date());
-        taskManager1.addTask(task);
+        taskManagerService1.addTask(task);
 
         // THEN: The task count should be 1
-        assertEquals(1, taskManager1.getTaskCount(), "Task count should be 1 after adding a task");
+        assertEquals(1, taskManagerService1.getTaskCount(), "Task count should be 1 after adding a task");
     }
 
     @Test
     void testListTasksReturnZeroTasks() {
         // GIVEN: A TaskManager with one task
         Task task = new Task(1, "Task", "My task" , null);
-        taskManager1.addTask(task);
+        taskManagerService1.addTask(task);
 
         // WHEN: listTasks() is called
-        taskManager1.listTasks();
+        taskManagerService1.listTasks();
 
         // Capture the output
         String printedOutput = outputStream.toString().trim();
@@ -112,28 +112,28 @@ public class TaskManagerTest {
         // GIVEN: A TaskManager with two tasks
         Task task1 = new Task(1, "Task", "My task" , null);
         Task task2 = new Task(2, "Task2", "My task2" , null);
-        taskManager1.addTask(task1);
-        taskManager1.addTask(task2);
+        taskManagerService1.addTask(task1);
+        taskManagerService1.addTask(task2);
 
         // WHEN: clearTasks() is called
-        taskManager1.clearTasks();
+        taskManagerService1.clearTasks();
 
         // THEN: All tasks should be deleted from the list of tasks
-        assertEquals(0, taskManager1.getTaskCount(), "clearTasks() should remove all tasks from TaskManager list");
+        assertEquals(0, taskManagerService1.getTaskCount(), "clearTasks() should remove all tasks from TaskManager list");
     }
 
     @Test
     void testRemoveTask() {
         // GIVEN: A TaskManager with one task
         Task task1 = new Task(1, "Task", "My task" , null);
-        taskManager1.addTask(task1);
-        assertEquals(1, taskManager1.getTaskCount(), "TaskManager should contain 1 task before removal.");
+        taskManagerService1.addTask(task1);
+        assertEquals(1, taskManagerService1.getTaskCount(), "TaskManager should contain 1 task before removal.");
 
         // WHEN: removeTask() is called
-        taskManager1.removeTask(task1.getId());
+        taskManagerService1.removeTask(task1.getId());
 
         // THEN: Task count should be 0
-        assertEquals(0, taskManager1.getTaskCount(), "removeTask() should remove the task");
+        assertEquals(0, taskManagerService1.getTaskCount(), "removeTask() should remove the task");
     }
 
     @Test
@@ -146,14 +146,14 @@ public class TaskManagerTest {
 
         // Existing task
         Task task1 = new Task(1, "Task", "My task" , null);
-        taskManager1.addTask(task1);
+        taskManagerService1.addTask(task1);
 
         // Updated task
         Task updatedTask = new Task(task1.getId(), updateTitle, updateDescription, updateDueDate, true);
         updatedTask.setCompleted(updateCompleted);
 
         // WHEN: updateTask() is called
-        taskManager1.updateTask(updatedTask);
+        taskManagerService1.updateTask(updatedTask);
 
         // THEN: Updated Task and Original Task have the same properties
         assertEquals(task1.getId(), updatedTask.getId(), "TaskManager should have same ID.");

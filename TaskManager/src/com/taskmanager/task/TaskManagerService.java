@@ -1,8 +1,5 @@
-package com.taskmanager.service;
+package com.taskmanager.task;
 
-import com.taskmanager.storage.TaskStorage;
-import com.taskmanager.task.Task;
-import com.taskmanager.task.TaskType;
 import com.taskmanager.util.TaskSorter;
 
 import java.util.List;
@@ -10,10 +7,10 @@ import java.util.List;
 /**
  * 🧩 Singleton Pattern | Creational Pattern
  * Ensures only one instance of a class exists globally.
- * com.taskmanager.service.TaskManager is implemented as a Singleton so that all tasks are stored in a single, shared instance.
+ * com.taskmanager.task.TaskManager is implemented as a Singleton so that all tasks are stored in a single, shared instance.
  *
- * The taskManagerInstance variable in com.taskmanager.service.TaskManager is declared as static, ensuring that only one
- * instance of com.taskmanager.service.TaskManager exists throughout the application. The variable taskManagerInstance
+ * The taskManagerInstance variable in com.taskmanager.task.TaskManager is declared as static, ensuring that only one
+ * instance of com.taskmanager.task.TaskManager exists throughout the application. The variable taskManagerInstance
  * belongs to the class itself, not to any specific object.
  *
  * ☑ Good to use cases:
@@ -22,33 +19,29 @@ import java.util.List;
  *
  */
 
-public class TaskManager {
-
-    private static TaskManager taskManagerInstance; // Static instance
+public class TaskManagerService {
+    private static TaskManagerService taskManagerServiceInstance; // Static instance
     private List<Task> tasks;
 
     /**
-     * Private constructor prevents direct instantiation / Loads tasks from storage
+     * Private constructor prevents direct instantiation
      */
-    private TaskManager() {
-        this.tasks = TaskStorage.loadTasks();
-    }
+    private TaskManagerService() {}
 
     /**
-     * Statis method is the only way to access the instance of com.taskmanager.service.TaskManager.
+     * Static method is the only way to access the instance of com.taskmanager.task.TaskManager.
      * Static method provides global access to the single instance.
      * @return
      */
-    public static TaskManager getTaskManagerInstance() {
-        if (taskManagerInstance == null) {
-            taskManagerInstance = new TaskManager();
+    public static TaskManagerService getTaskManagerInstance() {
+        if (taskManagerServiceInstance == null) {
+            taskManagerServiceInstance = new TaskManagerService();
         }
-        return taskManagerInstance;
+        return taskManagerServiceInstance;
     }
 
     public void addTask(Task task) {
             tasks.add(task);
-            TaskStorage.saveTasks(tasks); // Saving tasks to storage after adding a task
     }
 
     /**
@@ -72,7 +65,6 @@ public class TaskManager {
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getId() == task.getId()) {
                 tasks.set(i, task);
-                TaskStorage.saveTasks(tasks); // Save tasks in storage after updating a task
                 return;
             }
         }
@@ -83,7 +75,6 @@ public class TaskManager {
 
     public void removeTask(int taskId) {
         tasks.removeIf(task -> task.getId() == taskId);
-        TaskStorage.saveTasks(tasks); // Save tasks in storage after removing a task
     }
 
     public void clearTasks() {
