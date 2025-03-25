@@ -1,6 +1,7 @@
 package car;
 
 import model.Brand;
+import utils.Utils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,22 +54,6 @@ public class CarService {
                 .collect(Collectors.toList());
     }
 
-    public int returnNumberOfTotalCars() {
-        int totalCars = 0;
-        for (Car car : carDAO.getAllCars()) {
-            if (car != null) totalCars++;
-        }
-        return totalCars;
-    }
-
-    public Car returnCarByRegNumber(String regNumber) {
-        return carDAO.getAllCars()
-                .stream()
-                .filter(c -> c.getRegNumber().equals(regNumber))
-                .findFirst()
-                .orElse(null);
-    }
-
     public List<Car> returnAvailableCarsByBrand(String brandChoice){
         Brand brand = Brand.valueOf(brandChoice.toUpperCase());
         List<Car> filtered = returnCars()
@@ -77,18 +62,9 @@ public class CarService {
                 .collect(Collectors.toList());
 
         if (filtered.isEmpty()) {
-            System.out.println("----------------");
-            System.out.println("No cars found");
-            System.out.println("----------------");
+            Utils.printErrorMessage("No cars found");
         }
         return filtered;
     }
 
-    private int countCarsByBrand (Enum brand){
-        int countCars = 0;
-        for (Car car : carDAO.getAllCars()) {
-            if (car.getBrand().equals(brand)) countCars++;
-        }
-        return countCars;
-    }
 }

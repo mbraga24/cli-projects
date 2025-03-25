@@ -52,13 +52,13 @@ public class CarBookingService {
 
     }
 
-    public List<CarBooking> returnCarBookingsByUser(String userId) {
+        public List<CarBooking> returnCarBookingsByUser(String userId) {
         return returnCarBookings()
                 .stream()
                 .filter(b -> b.getUser().getId().equals(userId))
                 .collect(Collectors.toList());
     }
-🧾
+
     private void printBookingConfirmation(Car car, User user, CarBooking carBooking) {
         System.out.println(String.format(
                 "\uD83D\uDE97 Car: %s%n" +
