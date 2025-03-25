@@ -1,13 +1,15 @@
 package actions;
 
 import booking.CarBookingService;
-import car.Car;
 import car.CarService;
-import user.User;
+import model.BrandHelper;
 import user.UserService;
 import utils.Utils;
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class Actions {
 
@@ -21,16 +23,17 @@ public class Actions {
     private static Scanner scanner = new Scanner(System.in);
 
     private static void displayOptions() {
-        Integer[] numberOptions = {1, 2, 3, 4, 5, 6, 7};
+        Integer[] numberOptions = {1, 2, 3, 4, 5, 6, 7, 8};
         String[] textOptions = {"Book Car",
                 "View All Cars Booked by Users",
                 "View All Bookings",
                 "View Available Cars",
                 "View Available Electric Cars",
+                "View Available Cars by Brand",
                 "View All Users",
                 "Exit"};
 
-        for (int option = 0; option < 7; option++) {
+        for (int option = 0; option < numberOptions.length; option++) {
             System.out.println(numberOptions[option] + ": " + textOptions[option]);
         }
     }
@@ -39,7 +42,7 @@ public class Actions {
         switch (option) {
             case "1":
                 Utils.printMessage("Book a car");
-                userId = provideUserId();
+                userId = collectUserInput("Enter an user ID: ", () -> userService.returnUsers(), Actions::validateUserId);
                 if (userId.equals(CANCEL)) break;
                 carRegNumber = provideCarRegNumber();
                 if (carRegNumber.equals(CANCEL)) break;
@@ -47,7 +50,7 @@ public class Actions {
                 break;
             case "2":
                 Utils.printMessage("View All Cars Booked by Users");
-                userId = provideUserId();
+                userId = collectUserInput("Enter an user ID: ", () -> userService.returnUsers(), Actions::validateUserId);
                 if (userId.equals(CANCEL)) break;
                 Utils.display(carBookingService.returnCarBookingsByUser(userId));
                 break;
@@ -64,6 +67,11 @@ public class Actions {
                 Utils.display(carService.returnElectricCars());
                 break;
             case "6":
+                Utils.printMessage("View Available Cars by Brand");
+                String brandChoice = collectUserInput("Enter brand name: ", BrandHelper::returnBrandOptions, Actions::validateCarBrand);
+                Utils.display(carService.returnAvailableCarsByBrand(brandChoice));
+                break;
+            case "7":
                 Utils.printMessage("View All Users");
                 Utils.display(userService.returnUsers());
                 break;
@@ -73,7 +81,7 @@ public class Actions {
         }
     }
 
-    public static String collectUserInput() {
+    public static String mainMenuUserInput() {
         int ascii = 0;
         char character = '\0';
         boolean isValidOption;
@@ -91,40 +99,46 @@ public class Actions {
             if (userInput.isEmpty() || userInput.isBlank()) {
                 System.out.println();
                 Utils.printMessage("Input cannot be blank");
-            } else if (ascii < 49 || ascii > 55) {
+            } else if (ascii < 49 || ascii > 56) {
                 System.out.println();
                 Utils.printMessage("Invalid option. Please use one of the options listed below:");
             }
-        } while (userInput.isEmpty() || userInput.isBlank() || ascii < 49 || ascii > 55);
+        } while (userInput.isEmpty() || userInput.isBlank() || ascii < 49 || ascii > 56);
         return userInput;
     }
 
-    private static String provideUserId() {
-        String userId = "";
+    private static <T> String collectUserInput(String prompt, Supplier<List<T>> supplier, Function<String, Boolean> validator) {
+        String userInput = "";
         boolean isValid = false;
         do {
-            Utils.display(userService.returnUsers());
-            System.out.println("Enter an user ID: ");
-            userId = scanner.nextLine();
-            isValid = validateUserId(userId);
-            if (userId.equals("c") || userId.equals("C")) {
+            Utils.display(supplier.get()); // => supplier
+            System.out.println(prompt);
+            userInput = scanner.nextLine();
+            isValid = validator.apply(userInput); // => validator
+            if (userInput.equals("c") || userInput.equals("C")) {
                 isValid = true;
-                userId = CANCEL;
+                userInput = CANCEL;
                 System.out.println();
                 Utils.printMessage("Operation Cancelled");
             }
             if (!isValid) {
-                Utils.printMessage("Please, enter a valid user Id from the list of users + \n" +
+                Utils.printErrorMessage("Please, enter a valid input from the given list + \n" +
                         "provided below or press 'c' to cancel this operation:");
             }
-        } while(userId.isBlank() || userId.isEmpty() || isValid == false);
-        return userId;
+        } while(userInput.isBlank() || userInput.isEmpty() || isValid == false);
+        return userInput;
     }
 
     private static boolean validateUserId(String userId) {
         return userService.returnUsers()
                 .stream()
                 .anyMatch(u -> u.getId().equals(userId));
+    }
+
+    private static boolean validateCarBrand(String brand) {
+        return BrandHelper.returnBrandOptions()
+                .stream()
+                .anyMatch(option -> option.equalsIgnoreCase(brand));
     }
 
     private static String provideCarRegNumber() {
