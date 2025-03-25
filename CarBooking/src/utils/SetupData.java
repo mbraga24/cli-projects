@@ -4,7 +4,7 @@ import booking.CarBooking;
 import booking.CarBookingService;
 import car.Car;
 import car.CarService;
-import enums.Brand;
+import model.Brand;
 import user.User;
 
 import user.UserService;
