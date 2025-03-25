@@ -5,8 +5,8 @@ import car.CarService;
 import user.User;
 import user.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarBookingService {
 
@@ -53,43 +53,27 @@ public class CarBookingService {
     }
 
     public List<CarBooking> returnCarBookingsByUser(String userId) {
-        List<CarBooking> bookingsByUser = new ArrayList<>(this.returnNumberOfTotalCarBookings());
-        for (int i = 0; i < this.returnNumberOfTotalCarBookings(); i++) {
-            if (this.returnCarBookings().get(i).getUser().getId().equals(userId)) {
-                bookingsByUser.add(this.returnCarBookings().get(i));
-            }
-        }
-        return bookingsByUser;
+        return returnCarBookings()
+                .stream()
+                .filter(b -> b.getUser().getId().equals(userId))
+                .collect(Collectors.toList());
     }
-
-    public int returnNumberOfTotalCarBookings() {
-        int totalCarBooking = 0;
-        for (CarBooking cb : carBookingDAO.getAllCarBookings()) {
-            if (cb != null) totalCarBooking++;
-        }
-        return totalCarBooking;
-    }
-
+🧾
     private void printBookingConfirmation(Car car, User user, CarBooking carBooking) {
         System.out.println(String.format(
-                "=> Car: %s%n" +
-                        "--- Registration Number: %s%n" +
-                        "=> User: %s%n" +
-                        "--- User Id: %s%n" +
-                        "=> Booking Details:%n" +
-                        "--- Day/Time: %s%n" +
-                        "--- Booking Confirmation: %s%n" +
-                        "===============================================%n" +
-                        "            SUCCESSFULLY BOOKED!%n" +
-                        "===============================================",
+                "\uD83D\uDE97 Car: %s%n" +
+                        "    ✅  Registration Number: %s%n" +
+                        "\uD83E\uDDD1 User: %s%n" +
+                        "    ✅ User Id: %s%n" +
+                        "\uD83E\uDDFE Booking Details:%n" +
+                        "    ✅ Day/Time: %s%n" +
+                        "    ✅ Booking Confirmation: %s%n" +
+                        "====================================%n" +
+                        "           ✅ SUCCESSFULLY BOOKED!%n" +
+                        "====================================",
                 car.getBrand(), car.getRegNumber(),
                 user.getFirstName(), user.getId(),
                 carBooking.getBookingTime(), carBooking.getBookingId()
         ));
     }
-
-
-
-
-
 }
