@@ -1,6 +1,6 @@
 package car;
 
-import enums.Brand;
+import model.Brand;
 
 import java.math.BigDecimal;
 

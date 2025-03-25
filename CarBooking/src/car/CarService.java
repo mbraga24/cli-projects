@@ -1,6 +1,7 @@
 package car;
 
-import java.util.ArrayList;
+import model.Brand;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,19 +40,16 @@ public class CarService {
     }
 
     public List<Car> returnAvailableCars() {
-        List<Car> availableCars = new ArrayList<>(returnCars().size());
-        for (int i = 0; i < returnCars().size(); i++) {
-            if (returnCars().get(i).getAvailable() == true) {
-                availableCars.add(returnCars().get(i));
-            }
-        }
-        return availableCars;
+        return returnCars()
+                .stream()
+                .filter(Car::getAvailable)
+                .collect(Collectors.toList());
     }
 
     public List<Car> returnElectricCars() {
         return carDAO.getAllCars()
                 .stream()
-                .filter(Car::isElectric)
+                .filter(c -> c.isElectric() && c.getAvailable())
                 .collect(Collectors.toList());
     }
 
@@ -71,15 +69,19 @@ public class CarService {
                 .orElse(null);
     }
 
-    public List<Car> returnAvailableCarsByBrand (Enum brand){
-        int countCars = countCarsByBrand(brand);
-        List<Car> carsByBrand = new ArrayList<>();
-        for (int i = 0; i < countCars; i++) {
-            if (carDAO.getAllCars().get(i).getBrand().equals(brand) && carDAO.getAllCars().get(i).getAvailable() == true) {
-                carsByBrand.add(carDAO.getAllCars().get(i));
-            }
+    public List<Car> returnAvailableCarsByBrand(String brandChoice){
+        Brand brand = Brand.valueOf(brandChoice.toUpperCase());
+        List<Car> filtered = returnCars()
+                .stream()
+                .filter(c -> c.getAvailable() && c.getBrand().equals(brand))
+                .collect(Collectors.toList());
+
+        if (filtered.isEmpty()) {
+            System.out.println("----------------");
+            System.out.println("No cars found");
+            System.out.println("----------------");
         }
-        return carsByBrand;
+        return filtered;
     }
 
     private int countCarsByBrand (Enum brand){
