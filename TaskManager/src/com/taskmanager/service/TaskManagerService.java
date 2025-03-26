@@ -1,10 +1,20 @@
-package com.taskmanager.task;
+package com.taskmanager.service;
 
-import com.taskmanager.util.TaskSorter;
+import com.taskmanager.domain.model.Task;
+import com.taskmanager.domain.model.TaskType;
+import com.taskmanager.repository.TaskManagerDAO;
+import com.taskmanager.utils.TaskSorter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
+ *
+ * 🧟 Used Previously
+ *
+ * 🧩 Demonstrates method overriding via inheritance-based polymorphism.
+ * Calls the appropriate displayTask() implementation based on the actual Task subclass at runtime.
+ *
  * 🧩 Singleton Pattern | Creational Pattern
  * Ensures only one instance of a class exists globally.
  * com.taskmanager.task.TaskManager is implemented as a Singleton so that all tasks are stored in a single, shared instance.
@@ -20,46 +30,35 @@ import java.util.List;
  */
 
 public class TaskManagerService {
+
+    private TaskManagerDAO taskManagerDAO;
     private static TaskManagerService taskManagerServiceInstance; // Static instance
     private List<Task> tasks;
 
-    /**
-     * Private constructor prevents direct instantiation
-     */
-    private TaskManagerService() {}
-
-    /**
-     * Static method is the only way to access the instance of com.taskmanager.task.TaskManager.
-     * Static method provides global access to the single instance.
-     * @return
-     */
-    public static TaskManagerService getTaskManagerInstance() {
-        if (taskManagerServiceInstance == null) {
-            taskManagerServiceInstance = new TaskManagerService();
-        }
-        return taskManagerServiceInstance;
+    public TaskManagerService() {
+        taskManagerDAO = new TaskManagerDAO();
     }
 
     public void addTask(Task task) {
-            tasks.add(task);
+        taskManagerDAO.saveTask(task);
     }
 
-    /**
-     * listTasks() - Method Overriding (Inheritance-Based Polymorphism)
-     * Calls the appropriate overridden method dynamically
-     */
-    public void listTasks() {
-        for (Task task : tasks) {
-            task.displayTask();
-        }
+    public List<Task> returnTasks() {
+        return taskManagerDAO.getAllTasks();
     }
 
     public Task getTaskById(int taskId) {
-        for (Task task : tasks) {
-            if (task.getId() == taskId) return task;
-        }
-        return null;
+        return returnTasks()
+                .stream()
+                .filter(t -> t.getId() == taskId)
+                .findFirst()
+                .orElse(null);
     }
+
+    /*
+        ===========
+        REFACTOR LAST
+        ===========
 
     public void updateTask(Task task) {
         for (int i = 0; i < tasks.size(); i++) {
@@ -72,38 +71,38 @@ public class TaskManagerService {
         System.out.println("Task Not Found");
         System.out.println("xxxxxxxxxxxxxxx");
     }
+   */
+
 
     public void removeTask(int taskId) {
-        tasks.removeIf(task -> task.getId() == taskId);
+        taskManagerDAO.removeTask(taskId);
     }
 
     public void clearTasks() {
-        tasks.clear();
+        taskManagerDAO.removeAllTasks();
     }
 
     public int getTaskCount() {
-        return tasks.size();
+        return taskManagerDAO.getTaskCount();
     }
 
     public Task returnTask(int taskId) {
-        for (Task task : tasks) {
-            if (task.getId() == taskId) {
-                return task;
-            }
-        }
-        return null;
+        return returnTasks()
+                .stream()
+                .filter(c -> c.getId() == taskId)
+                .findFirst()
+                .orElse(null);
     }
 
-    public void displayByTaskType(TaskType type) {
-        for (Task task : tasks) {
-            if (task.getTaskType().equals(type)) {
-                task.displayTask();
-            }
-        }
+    public List<Task> displayByTaskType(TaskType type) {
+        return returnTasks()
+                .stream()
+                .filter(t -> t.getTaskType().equals(type))
+                .collect(Collectors.toList());
     }
 
     public void sortTasks(TaskSorter sorter) {
-        sorter.sort(tasks);
+        sorter.sort(returnTasks());
     }
 
 }

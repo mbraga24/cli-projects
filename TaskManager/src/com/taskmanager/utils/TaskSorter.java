@@ -1,4 +1,4 @@
-package com.taskmanager.util;
+package com.taskmanager.utils;
 
 import com.taskmanager.task.Task;
 

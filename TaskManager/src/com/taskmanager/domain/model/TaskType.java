@@ -1,4 +1,4 @@
-package com.taskmanager.task;
+package com.taskmanager.domain.model;
 
 public enum TaskType {
     WORK,

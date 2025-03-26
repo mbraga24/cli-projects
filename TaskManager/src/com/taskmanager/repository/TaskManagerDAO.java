@@ -1,4 +1,6 @@
-package com.taskmanager.task;
+package com.taskmanager.repository;
+
+import com.taskmanager.domain.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,18 @@ public class TaskManagerDAO {
 
     public List<Task> getAllTasks() {
         return tasks;
+    }
+
+    public void removeTask(int taskId) {
+        tasks.removeIf(t -> t.getId() == taskId);
+    }
+
+    public void removeAllTasks() {
+        tasks.clear();
+    }
+
+    public int getTaskCount() {
+        return tasks.size();
     }
 
 }

@@ -19,8 +19,6 @@ public class Car {
         this.isAvailable = true;
     }
 
-
-
     public String getRegNumber() {
         return regNumber;
     }

@@ -1,9 +1,9 @@
-package com.taskmanager.factory;
+package com.taskmanager.domain.factory;
 
-import com.taskmanager.task.PersonalTask;
-import com.taskmanager.task.Task;
-import com.taskmanager.task.TaskType;
-import com.taskmanager.task.WorkTask;
+import com.taskmanager.domain.model.PersonalTask;
+import com.taskmanager.domain.model.Task;
+import com.taskmanager.domain.model.TaskType;
+import com.taskmanager.domain.model.WorkTask;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.taskmanager.task;
+package com.taskmanager.domain.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -11,10 +11,10 @@ import java.util.Date;
  * controlled methods (getters, setters, or behaviors)
  *
  * 🗒Inherirance: Allows a subclass to extend the properties and behaviors of a parent class.
- * 👉 Parent: com.taskmanager.task.Task is parent and define attributes and methods
- * 👉 Subclass: com.taskmanager.task.WorkTask is a subclass that extends com.taskmanager.task.Task, inheriting its fields and methods while adding new
+ * 👉 Parent: com.taskmanager.domain.model.Task is parent and define attributes and methods
+ * 👉 Subclass: com.taskmanager.domain.model.WorkTask is a subclass that extends com.taskmanager.domain.model.Task, inheriting its fields and methods while adding new
  * behavior
- * 👉 Reusability: Instead of rewriting the same logic, com.taskmanager.task.WorkTask will reuse com.taskmanager.task.Task's methods to enhance them.
+ * 👉 Reusability: Instead of rewriting the same logic, com.taskmanager.domain.model.WorkTask will reuse com.taskmanager.domain.model.Task's methods to enhance them.
  */
 public abstract class Task implements Serializable {
 
@@ -86,4 +86,12 @@ public abstract class Task implements Serializable {
         System.out.format("Task Id: %d | Title: %s | Description: %s | DueDate: %s | Completed: %b", id, title, description, formatter.format(dueDate), completed);
     }
 
+    @Override
+    public String toString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
+        return String.format(
+                "Task{id='%d', Title='%s', Description='%s', Due Date='%s', Completed=%b}",
+                id, title, description, formatter.format(dueDate), completed
+        );
+    }
 }
