@@ -1,10 +1,10 @@
 package util;
 
-import com.taskmanager.task.Task;
-import com.taskmanager.util.SortByDueDate;
-import com.taskmanager.util.SortById;
-import com.taskmanager.util.SortByTitle;
-import com.taskmanager.util.TaskSorter;
+import com.taskmanager.domain.model.Task;
+import com.taskmanager.utils.SortByDueDate;
+import com.taskmanager.utils.SortById;
+import com.taskmanager.utils.SortByTitle;
+import com.taskmanager.utils.TaskSorter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -48,12 +48,24 @@ public abstract class Task implements Serializable {
         return this.id;
     }
 
+    public void setTitle(String title) {
+       this.title = title;
+    }
+
     public String getTitle() {
         return this.title;
     }
 
+    public void setDescription(String description) {
+       this.description = description;
+    }
+
     public String getDescription() {
         return this.description;
+    }
+
+    public void setDueDate(Date dueDate) {
+       this.dueDate = dueDate;
     }
 
     public Date getDueDate() {

@@ -55,24 +55,18 @@ public class TaskManagerService {
                 .orElse(null);
     }
 
-    /*
-        ===========
-        REFACTOR LAST
-        ===========
-
-    public void updateTask(Task task) {
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getId() == task.getId()) {
-                tasks.set(i, task);
-                return;
-            }
-        }
-        System.out.println("xxxxxxxxxxxxxxx");
-        System.out.println("Task Not Found");
-        System.out.println("xxxxxxxxxxxxxxx");
+    public void updateTask(Task updatedTask) {
+        taskManagerDAO.getAllTasks()
+                .stream()
+                .filter(t -> t.getId() == updatedTask.getId())
+                .findFirst()
+                .ifPresent(task -> {
+                    task.setTitle(updatedTask.getTitle());
+                    task.setDescription(updatedTask.getDescription());
+                    task.setDueDate(updatedTask.getDueDate());
+                    task.setCompleted(updatedTask.getCompleted());
+                });
     }
-   */
-
 
     public void removeTask(int taskId) {
         taskManagerDAO.removeTask(taskId);

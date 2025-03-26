@@ -1,6 +1,6 @@
 package com.taskmanager.utils;
 
-import com.taskmanager.task.Task;
+import com.taskmanager.domain.model.Task;
 
 import java.util.List;
 
