@@ -2,8 +2,8 @@ package com.taskmanager.actions;
 
 import com.taskmanager.domain.factory.TaskFactory;
 import com.taskmanager.domain.model.Task;
-import com.taskmanager.service.TaskManagerService;
 import com.taskmanager.domain.model.TaskType;
+import com.taskmanager.service.TaskManagerService;
 import com.taskmanager.utils.SortByDueDate;
 import com.taskmanager.utils.SortById;
 import com.taskmanager.utils.SortByTitle;
@@ -193,10 +193,7 @@ public class Actions {
         }
     }
 
-//================================================
-//                                        UPDATE TASK
-//================================================
-        private static void updateTask() {
+    private static void updateTask() {
         String updateTitle;
         String updateDescription;
         String updateDueDate;

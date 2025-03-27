@@ -1,5 +1,6 @@
+package service;
+
 import com.taskmanager.domain.model.Task;
-import com.taskmanager.domain.model.TaskType;
 import com.taskmanager.domain.model.WorkTask;
 import com.taskmanager.service.TaskManagerService;
 import org.junit.jupiter.api.AfterEach;
@@ -12,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+//✅ Write unit tests for all public methods.
 
 public class TaskManagerServiceTest {
 

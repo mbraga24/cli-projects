@@ -1,26 +1,9 @@
-package util;
-
-import com.taskmanager.domain.model.Task;
-import com.taskmanager.utils.SortByDueDate;
-import com.taskmanager.utils.SortById;
-import com.taskmanager.utils.SortByTitle;
-import com.taskmanager.utils.TaskSorter;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Stream;
+package utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+//✅ Test that sorting produces the correct order for different lists.
 public class TaskSorterTest {
 
 //    Date date1;

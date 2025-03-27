@@ -1,4 +1,4 @@
-package com.carbooking.utils;
+package com.carbooking.config;
 
 import com.carbooking.domain.model.CarBooking;
 import com.carbooking.service.CarBookingService;
@@ -15,12 +15,12 @@ public class SetupData {
 
     public static void initialize() {
         // CARS
-        Car teslaO = new Car("111", BigDecimal.valueOf(89.00), Brand.TESLA, true);
-        Car teslaTw = new Car("222", BigDecimal.valueOf(109.00), Brand.TESLA, true);
-        Car teslaTh = new Car("333", BigDecimal.valueOf(99.00), Brand.TESLA, true);
-        Car audiO = new Car("0101", BigDecimal.valueOf(50.00), Brand.AUDI, false);
-        Car audiTw = new Car("0202", BigDecimal.valueOf(44.00), Brand.AUDI, false);
-        Car mercedes = new Car("0001", BigDecimal.valueOf(77.00), Brand.MERCEDES, false);
+        Car teslaO = new Car("111", BigDecimal.valueOf(89.00), Brand.TESLA, "2012", true);
+        Car teslaTw = new Car("222", BigDecimal.valueOf(109.00), Brand.TESLA, "2017",true);
+        Car teslaTh = new Car("333", BigDecimal.valueOf(99.00), Brand.TESLA, "2017", true);
+        Car audiO = new Car("0101", BigDecimal.valueOf(50.00), Brand.AUDI, "2021", false);
+        Car audiTw = new Car("0202", BigDecimal.valueOf(44.00), Brand.AUDI, "2022", false);
+        Car mercedes = new Car("0001", BigDecimal.valueOf(77.00), Brand.MERCEDES, "2021", false);
         // CARS END
 
         // USERS
