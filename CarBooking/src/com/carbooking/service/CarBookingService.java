@@ -4,6 +4,7 @@ import com.carbooking.domain.model.CarBooking;
 import com.carbooking.repository.CarBookingDAO;
 import com.carbooking.domain.model.Car;
 import com.carbooking.domain.model.User;
+import com.carbooking.utils.CarSorter;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,6 +1,5 @@
-import com.carbooking.actions.Actions;
 import com.carbooking.controller.BookingController;
-import com.carbooking.utils.SetupData;
+import com.carbooking.config.SetupData;
 
 public class Main {
     public static void main(String[] args) {

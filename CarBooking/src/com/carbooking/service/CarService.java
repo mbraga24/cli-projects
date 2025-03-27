@@ -3,6 +3,7 @@ package com.carbooking.service;
 import com.carbooking.domain.model.Brand;
 import com.carbooking.domain.model.Car;
 import com.carbooking.repository.CarDAO;
+import com.carbooking.utils.CarSorter;
 import com.carbooking.utils.Utils;
 
 import java.util.List;
@@ -67,6 +68,13 @@ public class CarService {
             Utils.printErrorMessage("No cars found");
         }
         return filtered;
+    }
+
+    public void sortCars(CarSorter sorter) {
+        // runtime polymorphism
+        // CarSorter reference is used, but the actual object is what will determined which sortBy() to invoke.
+        sorter.sort(returnCars());
+
     }
 
 }
