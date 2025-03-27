@@ -76,6 +76,8 @@ public abstract class Task implements Serializable {
        return this.type;
     }
 
+    public abstract void setExtraDetails(String extraDetails);
+
     public abstract String getExtraDetails();
 
     public void setCompleted(boolean isComplete) {
@@ -106,4 +108,5 @@ public abstract class Task implements Serializable {
                 id, title, description, formatter.format(dueDate), completed
         );
     }
+
 }

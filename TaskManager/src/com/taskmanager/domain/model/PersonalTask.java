@@ -19,6 +19,11 @@ public class PersonalTask extends Task {
     }
 
     @Override
+    public void setExtraDetails(String extraDetail) {
+        this.location = extraDetail;
+    }
+
+    @Override
     public String getExtraDetails() {
         return this.location;
     }

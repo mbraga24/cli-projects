@@ -19,6 +19,11 @@ public class WorkTask extends Task {
     }
 
     @Override
+    public void setExtraDetails(String extraDetail) {
+        this.projectName = extraDetail;
+    }
+
+    @Override
     public String getExtraDetails() {
         return this.projectName;
     }
