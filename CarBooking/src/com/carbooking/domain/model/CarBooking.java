@@ -1,7 +1,4 @@
-package com.carbooking.booking;
-
-import com.carbooking.car.Car;
-import com.carbooking.User;
+package com.carbooking.domain.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

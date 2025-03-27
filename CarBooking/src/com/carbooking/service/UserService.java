@@ -1,4 +1,4 @@
-package com.carbooking;
+package com.carbooking.service;
 
 import com.carbooking.domain.model.User;
 import com.carbooking.repository.UserDAO;

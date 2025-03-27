@@ -1,4 +1,4 @@
-package utils;
+package com.carbooking.utils;
 
 import java.util.List;
 

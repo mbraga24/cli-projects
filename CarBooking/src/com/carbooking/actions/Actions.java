@@ -1,10 +1,10 @@
-package actions;
+package com.carbooking.actions;
 
-import booking.CarBookingService;
-import car.CarService;
-import utils.BrandHelper;
-import user.UserService;
-import utils.Utils;
+import com.carbooking.service.CarBookingService;
+import com.carbooking.service.CarService;
+import com.carbooking.utils.BrandHelper;
+import com.carbooking.service.UserService;
+import com.carbooking.utils.Utils;
 
 import java.util.List;
 import java.util.Scanner;
@@ -41,7 +41,7 @@ public class Actions {
     public static void triggerOption(String option) {
         switch (option) {
             case "1":
-                Utils.printMessage("Book a car");
+                Utils.printMessage("Book a Car");
                 userId = collectUserInput("Enter an user ID: ", () -> userService.returnUsers(), Actions::validateUserId);
                 if (userId.equals(CANCEL)) break;
                 carRegNumber = provideCarRegNumber();

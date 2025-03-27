@@ -1,6 +1,6 @@
-package utils;
+package com.carbooking.utils;
 
-import model.Brand;
+import com.carbooking.domain.model.Brand;
 
 import java.util.Arrays;
 import java.util.List;

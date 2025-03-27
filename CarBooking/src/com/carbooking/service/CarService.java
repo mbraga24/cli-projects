@@ -1,6 +1,8 @@
-package com.carbooking.car;
+package com.carbooking.service;
 
-import com.carbooking.Brand;
+import com.carbooking.domain.model.Brand;
+import com.carbooking.domain.model.Car;
+import com.carbooking.repository.CarDAO;
 import com.carbooking.utils.Utils;
 
 import java.util.List;

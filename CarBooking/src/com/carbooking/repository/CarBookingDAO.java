@@ -1,4 +1,4 @@
-package com.carbooking.booking;
+package com.carbooking.repository;
 
 import com.carbooking.domain.model.CarBooking;
 

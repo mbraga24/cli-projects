@@ -1,13 +1,13 @@
-package utils;
+package com.carbooking.utils;
 
-import booking.CarBooking;
-import booking.CarBookingService;
-import car.Car;
-import car.CarService;
-import model.Brand;
-import user.User;
+import com.carbooking.domain.model.CarBooking;
+import com.carbooking.service.CarBookingService;
+import com.carbooking.domain.model.Car;
+import com.carbooking.service.CarService;
+import com.carbooking.domain.model.Brand;
+import com.carbooking.domain.model.User;
 
-import user.UserService;
+import com.carbooking.service.UserService;
 
 import java.math.BigDecimal;
 

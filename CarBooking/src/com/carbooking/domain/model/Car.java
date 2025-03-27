@@ -1,6 +1,4 @@
-package com.carbooking.car;
-
-import com.carbooking.Brand;
+package com.carbooking.domain.model;
 
 import java.math.BigDecimal;
 

@@ -1,14 +1,10 @@
-import actions.Actions;
-import utils.SetupData;
+import com.carbooking.actions.Actions;
+import com.carbooking.controller.BookingController;
+import com.carbooking.utils.SetupData;
 
 public class Main {
-    private static String userInput = "";
-
     public static void main(String[] args) {
         SetupData.initialize();
-        do {
-            userInput = Actions.mainMenuUserInput();
-            Actions.triggerOption(userInput);
-        } while (!userInput.equals("8"));
+        BookingController.start();
     }
 }
