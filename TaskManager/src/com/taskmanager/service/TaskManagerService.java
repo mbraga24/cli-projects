@@ -56,16 +56,17 @@ public class TaskManagerService {
     }
 
     public void updateTask(Task updatedTask) {
-        taskManagerDAO.getAllTasks()
+        Task taskToUpdate = taskManagerDAO.getAllTasks()
                 .stream()
                 .filter(t -> t.getId() == updatedTask.getId())
                 .findFirst()
-                .ifPresent(task -> {
-                    task.setTitle(updatedTask.getTitle());
-                    task.setDescription(updatedTask.getDescription());
-                    task.setDueDate(updatedTask.getDueDate());
-                    task.setCompleted(updatedTask.getCompleted());
-                });
+                .orElseThrow(() -> new IllegalArgumentException("Task with ID " + updatedTask.getId() + " not found."));
+
+                taskToUpdate.setTitle(updatedTask.getTitle());
+                taskToUpdate.setDescription(updatedTask.getDescription());
+                taskToUpdate.setDueDate(updatedTask.getDueDate());
+                taskToUpdate.setExtraDetails(updatedTask.getExtraDetails());
+                taskToUpdate.setCompleted(updatedTask.getCompleted());
     }
 
     public void removeTask(int taskId) {
