@@ -1,9 +1,9 @@
-package booking;
+package com.carbooking.booking;
 
-import car.Car;
-import car.CarService;
-import user.User;
-import user.UserService;
+import com.carbooking.car.Car;
+import com.carbooking.car.CarService;
+import com.carbooking.User;
+import com.carbooking.UserService;
 
 import java.util.List;
 import java.util.stream.Collectors;

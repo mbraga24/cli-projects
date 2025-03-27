@@ -1,4 +1,6 @@
-package user;
+package com.carbooking;
+
+import com.carbooking.domain.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ public class UserDAO {
     }
 
     /**
-     * Saves user.
+     * Saves com.carbooking.user.
      * @param user
      */
     public void saveUser(User user) {

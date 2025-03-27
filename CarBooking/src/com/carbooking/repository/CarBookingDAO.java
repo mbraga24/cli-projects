@@ -1,4 +1,6 @@
-package booking;
+package com.carbooking.booking;
+
+import com.carbooking.domain.model.CarBooking;
 
 import java.util.ArrayList;
 import java.util.List;

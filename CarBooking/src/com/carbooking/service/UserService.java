@@ -1,4 +1,7 @@
-package user;
+package com.carbooking;
+
+import com.carbooking.domain.model.User;
+import com.carbooking.repository.UserDAO;
 
 import java.util.List;
 

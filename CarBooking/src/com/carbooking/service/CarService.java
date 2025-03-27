@@ -1,7 +1,7 @@
-package car;
+package com.carbooking.car;
 
-import model.Brand;
-import utils.Utils;
+import com.carbooking.Brand;
+import com.carbooking.utils.Utils;
 
 import java.util.List;
 import java.util.stream.Collectors;

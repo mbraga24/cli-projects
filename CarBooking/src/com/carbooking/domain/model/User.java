@@ -1,4 +1,4 @@
-package user;
+package com.carbooking;
 
 public class User {
 

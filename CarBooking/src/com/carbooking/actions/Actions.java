@@ -2,7 +2,7 @@ package actions;
 
 import booking.CarBookingService;
 import car.CarService;
-import model.BrandHelper;
+import utils.BrandHelper;
 import user.UserService;
 import utils.Utils;
 

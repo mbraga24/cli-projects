@@ -1,7 +1,7 @@
-package booking;
+package com.carbooking.booking;
 
-import car.Car;
-import user.User;
+import com.carbooking.car.Car;
+import com.carbooking.User;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -82,7 +82,7 @@ public class CarBooking {
     @Override
     public String toString() {
         return String.format(
-                "CarBooking{bookingId=%s, user=%s, car=%s, bookingTime=%s, isCanceled=%b}",
+                "CarBooking{bookingId=%s, com.carbooking.user=%s, com.carbooking.car=%s, bookingTime=%s, isCanceled=%b}",
                 bookingId, user, car, bookingTime, isCanceled
         );
     }

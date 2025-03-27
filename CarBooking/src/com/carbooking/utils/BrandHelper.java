@@ -1,4 +1,6 @@
-package model;
+package utils;
+
+import model.Brand;
 
 import java.util.Arrays;
 import java.util.List;

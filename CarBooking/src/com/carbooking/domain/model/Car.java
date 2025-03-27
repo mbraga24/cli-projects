@@ -1,6 +1,6 @@
-package car;
+package com.carbooking.car;
 
-import model.Brand;
+import com.carbooking.Brand;
 
 import java.math.BigDecimal;
 
