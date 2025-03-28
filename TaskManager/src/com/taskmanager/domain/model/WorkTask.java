@@ -18,6 +18,11 @@ public class WorkTask extends Task {
         this.projectName = projectName;
     }
 
+    public WorkTask(int id, String title, String description, Date dueDate, boolean completed, String projectName, TaskType type) {
+        super(id, title, description, dueDate, completed, type); // constructor chaining
+        this.projectName = projectName;
+    }
+
     @Override
     public void setExtraDetails(String extraDetail) {
         this.projectName = extraDetail;
@@ -33,5 +38,4 @@ public class WorkTask extends Task {
         super.displayTask();
         System.out.format(" | Project: %s\n", projectName);
     }
-
 }
