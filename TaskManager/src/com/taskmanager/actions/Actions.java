@@ -3,26 +3,27 @@ package com.taskmanager.actions;
 import com.taskmanager.domain.factory.TaskFactory;
 import com.taskmanager.domain.model.Task;
 import com.taskmanager.domain.model.TaskType;
+import com.taskmanager.io.ConsoleIO;
 import com.taskmanager.service.TaskManagerService;
 import com.taskmanager.utils.SortByDueDate;
 import com.taskmanager.utils.SortById;
 import com.taskmanager.utils.SortByTitle;
-import com.taskmanager.utils.Utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import static com.taskmanager.utils.Utils.*;
+import static com.taskmanager.utils.Utils.display;
+import static com.taskmanager.utils.Utils.printMessageHeader;
 
 public class Actions {
 
-    private final static String CANCEL = "cancel";
-    private static String userInput = "";
-    private static Scanner scanner = new Scanner(System.in);
-    private static TaskManagerService taskManagerService = new TaskManagerService();
-    private static String[] mainMenuTextOptions = {
+    private Scanner scanner = new Scanner(System.in);
+    private final ConsoleIO io = new ConsoleIO(scanner);
+    private TaskManagerService taskManagerService = new TaskManagerService();
+    private String userInput = "";
+    private String[] mainMenuTextOptions = {
             "Add a New Task",
             "Update an Existing Task",
             "View All Tasks",
@@ -30,25 +31,25 @@ public class Actions {
             "Remove a Task",
             "Exit"
     };
-    private static String[] sortMenuTextOptions = {
+    private String[] sortMenuTextOptions = {
             "Sort by Due Date",
             "Sort Alphabetically (Title)",
             "Sort by Task ID",
             "Sort by Task Category"
     };
-    private static String[] categoryTextOptions = {
+    private String[] categoryTextOptions = {
             "Work",
             "Personal"
     };
 
-    public static String mainMenuUserInput() {
+    public String mainMenuUserInput() {
         int ascii = 0;
         char character = '\0';
         boolean isValidOption;
         do {
             isValidOption = true;
             displayOptions(mainMenuTextOptions);
-            userInput = scanner.nextLine();
+            userInput = io.readLineString();
 
             if (userInput.length() > 1) isValidOption = false;
             if (isValidOption != false && userInput.length() > 0) {
@@ -56,26 +57,24 @@ public class Actions {
                 ascii = (int) character;
             }
             if (userInput.isEmpty() || userInput.isBlank()) {
-                System.out.println();
-                Utils.printErrorMessage("Input cannot be blank");
+                io.printError("Input cannot be blank");
             } else if (ascii < 49 || ascii > 56) {
-                System.out.println();
-                Utils.printErrorMessage("Invalid option. Please use one of the options listed below:");
+                io.printError("Invalid option. Please use one of the options listed above.");
             }
         } while (userInput.isEmpty() || userInput.isBlank() || ascii < 49 || ascii > 56);
         return userInput;
     }
 
-    private static void displayOptions(String[] textOptions) {
+    private void displayOptions(String[] textOptions) {
         int OptNumber = 0;
         for (int option = 0; option < textOptions.length; option++) {
             OptNumber = (option + 1);
-            System.out.println( OptNumber + ": " + textOptions[option]);
+            io.print( OptNumber + ": " + textOptions[option]);
         }
-        System.out.format("Enter your choice (1-%s):", OptNumber);
+        io.print("Enter your choice: (1-" + OptNumber +")");
     }
 
-    public static void triggerOption(String choice) {
+    public void triggerOption(String choice) {
         switch (choice) {
             case "1":
                 addTask();
@@ -94,38 +93,40 @@ public class Actions {
                 break;
             case "6":
                 System.out.println(0);
+                break;
             default:
-                Utils.printErrorMessage("Invalid option. Try again");
+                io.printError("Invalid option. Try again");
         }
     }
 
-    private static void addTask() {
-        printMessage("Enter Task Type (WORK/PERSONAL):");
-        String taskTypeInput = scanner.nextLine().toUpperCase();
+    private void addTask() {
+        printMessageHeader("Create Task Type");
+        io.print("Enter Task Type (WORK/PERSONAL):");
+        String taskTypeInput = io.readLineString().toUpperCase();
         TaskType type = TaskType.valueOf(taskTypeInput);
 
-        System.out.println("Enter Task Title: ");
-        String title = scanner.nextLine();
-        System.out.println("Enter Task Description: ");
-        String description = scanner.nextLine();
+        io.print("Enter Task Title: ");
+        String title = io.readLineString();
+        io.print("Enter Task Description: ");
+        String description = io.readLineString();
 
-        System.out.println(type == TaskType.WORK ? "Enter Project Name: " : "Enter Location: ");
-        String extraDetail  = scanner.nextLine();
+        io.print(type == TaskType.WORK ? "Enter Project Name: " : "Enter Location: ");
+        String extraDetail  = io.readLineString();
 
-        System.out.println("Enter Due Date (yyyy-mm-dd): ");
+        io.print("Enter Due Date (yyyy-mm-dd): ");
         Date dueDate = new Date();
 
         Task newTask = TaskFactory.createTask(type, taskManagerService.getTaskCount() + 1, title, description, dueDate, extraDetail);
         taskManagerService.addTask(newTask);
-        Utils.printSuccessMessage("Task Created Successfully!");
+        io.printSuccess("Task Created Successfully!");
     }
 
-    private static void viewTasks() {
-        System.out.println("Select how you would like to view your tasks:");
+    private void viewTasks() {
+        io.print("Select how you would like to view your tasks:");
         displayOptions(sortMenuTextOptions);
 
         int choice = scanner.nextInt();
-        scanner.nextLine();
+        io.readLineString();
 
         switch(choice) {
             case 1:
@@ -144,42 +145,42 @@ public class Actions {
                 chooseCategory();
                 break;
             default:
-                printErrorMessage("Invalid option. Try again.");
+                io.printError("Invalid option. Try again.");
         }
     }
 
-    private static void markTaskCompleted() {
+    private void markTaskCompleted() {
         display(taskManagerService.returnTasks());
-        printMessage("Enter task ID to complete: ");
-        int id = Integer.parseInt(scanner.nextLine());
+        io.print("Enter task ID to complete: ");
+        int id = Integer.parseInt(io.readLineString());
         Task task = taskManagerService.getTaskById(id);
         if (task != null) {
             task.markAsCompleted();
-            System.out.println(taskManagerService.returnTask(id));
-            Utils.printSuccessMessage("Task marked as completed.");
+            io.printSuccess("Task [" + task.getTitle() + "] marked as completed.");
         } else {
-            printErrorMessage("Task not found.");
+            io.printError("Task not found.");
         }
     }
 
-    private static void removeTask() {
+    private void removeTask() {
         display(taskManagerService.returnTasks());
-        printMessage("Enter task ID to remove: ");
-        int id = Integer.parseInt(scanner.nextLine());
+        printMessageHeader("Remove Task ID");
+        io.print("Enter task ID to remove: ");
+        int id = io.readInt();
         Task task = taskManagerService.getTaskById(id);
         if (task != null) {
             taskManagerService.removeTask(id);
-            Utils.printSuccessMessage("Task removed successfully.");
+            io.printSuccess("Task [" + task.getTitle() + "] removed successfully.");
         } else {
-            printErrorMessage("Task not found.");
+            io.printError("Task not found.");
         }
     }
 
-    static void chooseCategory() {
-        printMessage("Choose category [WORK/PERSONAL]:");
+    public void chooseCategory() {
+        printMessageHeader("Choose Category [WORK/PERSONAL]");
         displayOptions(categoryTextOptions);
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = io.readLineInt();
+        io.readLineString();
 
         switch(choice) {
             case 1:
@@ -189,84 +190,94 @@ public class Actions {
                 display(taskManagerService.displayByTaskType(TaskType.PERSONAL));
                 break;
             default:
-                printErrorMessage("Invalid option. Try again");
+                io.printError("Invalid option. Try again");
         }
     }
 
-    private static void updateTask() {
+    private void updateTask() {
         String updateTitle;
         String updateDescription;
         String updateDueDate;
         String updateExtraDetail;
         boolean  updateCompleted = false;
 
-        printMessage("Choose The Task To Update");
+        printMessageHeader("Update Task");
+        io.print("Choose The Task To Update");
         display(taskManagerService.returnTasks());
         System.out.println("Enter Task ID: ");
 
         int choiceId = scanner.nextInt();
-        scanner.nextLine();
+        io.readLineString();
 
-        Task task = taskManagerService.returnTask(choiceId);
+        // Retrieve task to update
+        Task originalTask = taskManagerService.returnTask(choiceId);
 
-        checkIfTaskIsValid(task);
+        checkIfTaskIsValid(originalTask);
 
-        printMessage("Original Task");
-        task.displayTask();
+        // Print original Task for reference
+        printMessageHeader("Original Task");
+        originalTask.displayTask();
 
-        System.out.format("Enter new title (press Enter to keep  [ %s ]):\n", task.getTitle());
-        updateTitle = scanner.nextLine();
+        System.out.format("Enter new title (press Enter to keep  [ %s ]):\n", originalTask.getTitle());
+        updateTitle = io.readLineString();
         if (updateTitle.isEmpty()) {
-            updateTitle = task.getTitle();
+            updateTitle = originalTask.getTitle();
         }
 
-        System.out.format("Enter new description (press Enter to keep [ %s ]):\n", task.getDescription());
-        updateDescription = scanner.nextLine();
+        System.out.format("Enter new description (press Enter to keep [ %s ]):\n", originalTask.getDescription());
+        updateDescription = io.readLineString();
         if (updateDescription.isEmpty()) {
-            updateDescription = task.getDescription();
+            updateDescription = originalTask.getDescription();
         }
 
-        String extraDetail = task.getTaskType() == TaskType.WORK ? "Project Name" : "Location";
+        String extraDetail = originalTask.getTaskType() == TaskType.WORK ? "Project Name" : "Location";
 
         System.out.format("Enter new %s (press Enter to keep [%s]):\n", extraDetail, extraDetail);
-        updateExtraDetail = scanner.nextLine();
+        updateExtraDetail = io.readLineString();
         if (updateExtraDetail.isEmpty()) {
-            updateExtraDetail = task.getExtraDetails();
+            updateExtraDetail = originalTask.getExtraDetails();
         }
 
-        System.out.format("Enter new Due Date (press Enter to keep [ %s ]):\n", task.getDueDate());
-        updateDueDate = scanner.nextLine();
+        System.out.format("Enter new Due Date (press Enter to keep [ %s ]):\n", originalTask.getDueDate());
+        updateDueDate = io.readLineString();
         if (updateDueDate.isEmpty()) {
             SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
-            updateDueDate = formatter.format(task.getDueDate());
+            updateDueDate = formatter.format(originalTask.getDueDate());
         }
 
-        System.out.format("Mark as completed? (y/n, current: %s):\n", task.getCompleted());
-        String completedInput = scanner.nextLine();
+        System.out.format("Mark as completed? (y/n, current: %s):\n", originalTask.getCompleted());
+        String completedInput = io.readLineString();
         if (completedInput.equalsIgnoreCase("y")) {
             updateCompleted = true;
         }
         SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
-        Date updatedDate = null;
+        Date updateDate = null;
 
         try {
             // Convert String to Date
-            updatedDate = formatter.parse(updateDueDate);
+            updateDate = formatter.parse(updateDueDate);
         } catch (ParseException e) {
-            printErrorMessage("Invalid date format!");
+            io.printError("Invalid date format!");
             e.printStackTrace();
         }
 
-        Task updatedTask = TaskFactory.createTask(task.getTaskType(), task.getId(), updateTitle, updateDescription, updatedDate, updateExtraDetail);
-        updatedTask.setCompleted(updateCompleted);
+        Task updatedTask = new Task.Builder()
+                .id(originalTask.getId())
+                .title(updateTitle)
+                .description(updateDescription)
+                .dueDate(updateDate)
+                .completed(updateCompleted)
+                .extraDetail(updateExtraDetail)
+                .type(originalTask.getTaskType())
+                .build();
         taskManagerService.updateTask(updatedTask);
 
-        printSuccessMessage("Task Updated Successfully!");
+        io.printSuccess("Task Updated Successfully!");
     }
 
-    private static void checkIfTaskIsValid(Task task) {
+    private void checkIfTaskIsValid(Task task) {
         if (task == null) {
-            printErrorMessage("Task with ID: " + task.getId() + " not found.");
+            io.printError("Task with ID: " + task.getId() + " not found.");
         }
     }
 
