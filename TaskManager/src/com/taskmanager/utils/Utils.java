@@ -19,31 +19,10 @@ public class Utils {
      * Helps build message and separator header to avoid repetition.
      * @param message
      */
-    public static void printMessage(String message) {
-        int plusIndex = message.indexOf('+');
-        String display = message.replace("+", "").trim();
-
-        System.out.println("=".repeat(plusIndex != -1 ? plusIndex : message.length()));
-        System.out.println(display);
-        System.out.println("=".repeat(plusIndex != -1 ? plusIndex : message.length()));
-    }
-
-    public static void printErrorMessage(String message) {
-        int plusIndex = message.indexOf('+');
-        String display = message.replace("+", "").trim();
-
-        System.out.println("-".repeat(plusIndex != -1 ? plusIndex : message.length()));
-        System.out.println(display);
-        System.out.println("-".repeat(plusIndex != -1 ? plusIndex : message.length()));
-    }
-
-    public static void printSuccessMessage(String message) {
-        int plusIndex = message.indexOf('+');
-        String display = message.replace("+", "").trim();
-
-        System.out.println("*".repeat(plusIndex != -1 ? plusIndex : message.length()));
-        System.out.println(display);
-        System.out.println("*".repeat(plusIndex != -1 ? plusIndex : message.length()));
+    public static void printMessageHeader(String message) {
+        System.out.println("=".repeat(message.length()));
+        System.out.println(message);
+        System.out.println("=".repeat(message.length()));
     }
 
 }

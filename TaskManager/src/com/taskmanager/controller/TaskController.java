@@ -2,17 +2,19 @@ package com.taskmanager.controller;
 
 import com.taskmanager.actions.Actions;
 
-import static com.taskmanager.utils.Utils.printMessage;
+import static com.taskmanager.utils.Utils.printMessageHeader;
+
 
 public class TaskController {
 
-    private static String userInput = "";
+    Actions actions = new Actions();
+    private String userInput = "";
 
     public  void start() {
         do {
-            printMessage("Task Manager CLI");
-            userInput = Actions.mainMenuUserInput();
-            Actions.triggerOption(userInput);
+            printMessageHeader("Task Manager CLI");
+            userInput = actions.mainMenuUserInput();
+            actions.triggerOption(userInput);
         } while (!userInput.equals("7"));
     }
 
