@@ -2,8 +2,8 @@ package com.taskmanager.config;
 
 import com.taskmanager.domain.model.PersonalTask;
 import com.taskmanager.domain.model.Task;
-import com.taskmanager.service.TaskManagerService;
 import com.taskmanager.domain.model.WorkTask;
+import com.taskmanager.service.TaskManagerService;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
