@@ -206,6 +206,7 @@ public class Actions {
 
         io.print("Enter Task ID: ");
         int choiceId = io.readLineInt();
+        io.readLineString();
 
         // Retrieve task to update
         Task originalTask = taskManagerService.returnTask(choiceId);
