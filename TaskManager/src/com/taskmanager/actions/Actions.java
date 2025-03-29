@@ -197,69 +197,36 @@ public class Actions {
     private void updateTask() {
         String updateTitle;
         String updateDescription;
-        String updateDueDate;
+        String updateDueDateStr;
         String updateExtraDetail;
-        boolean  updateCompleted = false;
 
         printMessageHeader("Update Task");
         io.print("Choose The Task To Update");
         display(taskManagerService.returnTasks());
-        System.out.println("Enter Task ID: ");
 
-        int choiceId = scanner.nextInt();
-        io.readLineString();
+        io.print("Enter Task ID: ");
+        int choiceId = io.readLineInt();
 
         // Retrieve task to update
         Task originalTask = taskManagerService.returnTask(choiceId);
+        ifTaskIsNull(originalTask);
 
-        checkIfTaskIsValid(originalTask);
-
-        // Print original Task for reference
         printMessageHeader("Original Task");
         originalTask.displayTask();
 
-        System.out.format("Enter new title (press Enter to keep  [ %s ]):\n", originalTask.getTitle());
-        updateTitle = io.readLineString();
-        if (updateTitle.isEmpty()) {
-            updateTitle = originalTask.getTitle();
-        }
+        updateTitle = promptOrKeep("title", originalTask.getTitle());
 
-        System.out.format("Enter new description (press Enter to keep [ %s ]):\n", originalTask.getDescription());
-        updateDescription = io.readLineString();
-        if (updateDescription.isEmpty()) {
-            updateDescription = originalTask.getDescription();
-        }
+        updateDescription = promptOrKeep("description", originalTask.getDescription());
+
+        updateDueDateStr = promptOrKeep("Due Date", formatDate(originalTask.getDueDate()));
+
+        Date updateDate = parseDateOrDefault(updateDueDateStr, originalTask.getDueDate());
+
+        boolean updateCompleted  = promptCompleted(originalTask.getCompleted());
 
         String extraDetail = originalTask.getTaskType() == TaskType.WORK ? "Project Name" : "Location";
 
-        System.out.format("Enter new %s (press Enter to keep [%s]):\n", extraDetail, extraDetail);
-        updateExtraDetail = io.readLineString();
-        if (updateExtraDetail.isEmpty()) {
-            updateExtraDetail = originalTask.getExtraDetails();
-        }
-
-        System.out.format("Enter new Due Date (press Enter to keep [ %s ]):\n", originalTask.getDueDate());
-        updateDueDate = io.readLineString();
-        if (updateDueDate.isEmpty()) {
-            SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
-            updateDueDate = formatter.format(originalTask.getDueDate());
-        }
-
-        System.out.format("Mark as completed? (y/n, current: %s):\n", originalTask.getCompleted());
-        String completedInput = io.readLineString();
-        if (completedInput.equalsIgnoreCase("y")) {
-            updateCompleted = true;
-        }
-        SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
-        Date updateDate = null;
-
-        try {
-            // Convert String to Date
-            updateDate = formatter.parse(updateDueDate);
-        } catch (ParseException e) {
-            io.printError("Invalid date format!");
-            e.printStackTrace();
-        }
+        updateExtraDetail = promptOrKeep(extraDetail, originalTask.getExtraDetails());
 
         Task updatedTask = new Task.Builder()
                 .id(originalTask.getId())
@@ -275,9 +242,34 @@ public class Actions {
         io.printSuccess("Task Updated Successfully!");
     }
 
-    private void checkIfTaskIsValid(Task task) {
+    private void ifTaskIsNull(Task task) {
         if (task == null) {
             io.printError("Task with ID: " + task.getId() + " not found.");
+        }
+    }
+
+    private String promptOrKeep(String label, String currentValue) {
+        io.print(String.format("Enter new %s (press Enter to keep [%s]):", label, currentValue));
+        String input = io.readLineString();
+        return input.isEmpty() ? currentValue : input;
+    }
+
+    private boolean promptCompleted(boolean currentStatus) {
+        io.print(String.format("Mark as completed? (y/n, current: %s):", currentStatus));
+        return io.readLineString().equalsIgnoreCase("y");
+    }
+
+    private String formatDate(Date date) {
+        return new SimpleDateFormat("MMM dd yyyy").format(date);
+    }
+
+    private Date parseDateOrDefault(String input, Date fallback) {
+        if (input.isEmpty()) return fallback;
+        try {
+            return new SimpleDateFormat("MMM dd yyyy").parse(input);
+        } catch (ParseException e) {
+            io.printError("Invalid date format! Keeping original date.");
+            return fallback;
         }
     }
 

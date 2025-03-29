@@ -22,7 +22,7 @@ public class ConsoleIO {
         System.out.println("✅ Success: " + message);
     }
 
-    public void printNextLine() {
+    public void skipALine() {
         System.out.println();
     }
 
