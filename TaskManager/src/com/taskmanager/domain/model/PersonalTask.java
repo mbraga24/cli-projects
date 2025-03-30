@@ -1,6 +1,7 @@
 package com.taskmanager.domain.model;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 🗒Inherirance: Allows a subclass to extend the properties and behaviors of a parent class.
@@ -13,13 +14,13 @@ public class PersonalTask extends Task {
 
     private String location;
 
-    public PersonalTask(int id, String title, String description, Date dueDate, boolean completed, String location, TaskType type) {
-        super(id, title, description, dueDate, completed, type); // constructor chaining
+    public PersonalTask(UUID id, String title, String description, Date dueDate, String location, TaskType type) {
+        super(id, title, description, dueDate, type); // constructor chaining
         this.location = location;
     }
 
-    public PersonalTask(String title, String description, Date dueDate, String location) {
-        super(title, description, dueDate, TaskType.PERSONAL); // constructor chaining
+    public PersonalTask(UUID id, String title, String description, Date dueDate, Boolean completed, String location, TaskType type) {
+        super(id, title, description, dueDate, completed, type); // constructor chaining
         this.location = location;
     }
 

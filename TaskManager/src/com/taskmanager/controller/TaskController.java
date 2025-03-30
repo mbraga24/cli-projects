@@ -8,14 +8,14 @@ import static com.taskmanager.utils.Utils.printMessageHeader;
 public class TaskController {
 
     Actions actions = new Actions();
-    private String userInput = "";
+    private int  userInput;
 
     public  void start() {
         do {
             printMessageHeader("Task Manager CLI");
             userInput = actions.mainMenuUserInput();
             actions.triggerOption(userInput);
-        } while (!userInput.equals("7"));
+        } while (!(userInput == 6));
     }
 
 }

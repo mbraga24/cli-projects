@@ -3,6 +3,7 @@ package com.taskmanager.domain.model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Encapsulation and Inheritance
@@ -21,14 +22,14 @@ import java.util.Date;
 public abstract class Task implements Serializable {
 
     private static int idCounter = 0;
-    private int id;
+    private UUID id;
     private String title;
     private String description;
     private Date dueDate;
     private TaskType type;
     private boolean completed;
 
-    public Task(int id, String title, String description, Date dueDate, boolean completed, TaskType type) {
+    public Task(UUID id, String title, String description, Date dueDate, boolean completed, TaskType type) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -37,16 +38,16 @@ public abstract class Task implements Serializable {
         this.type = type;
     }
 
-   public Task(String title, String description, Date dueDate, TaskType type) {
-       this.id = ++idCounter;
-       this.title = title;
+   public Task(UUID id, String title, String description, Date dueDate, TaskType type) {
+       this.id = id;
+        this.title = title;
        this.description = description;
        this.dueDate = dueDate;
        this.completed = false;
        this.type = type;
    }
 
-    public int getId() {
+    public UUID getId() {
         return this.id;
     }
 
@@ -104,7 +105,7 @@ public abstract class Task implements Serializable {
      *  💡 Can be refactored to use a strategy map for better scalability.
      */
     public static class Builder {
-        private int id;
+        private UUID id;
         private String title;
         private String description;
         private Date dueDate;
@@ -112,7 +113,7 @@ public abstract class Task implements Serializable {
         private String extraDetail;
         private TaskType type;
 
-        public Builder id(int id) {
+        public Builder id(UUID id) {
             this.id = id;
             return this;
         }
@@ -159,19 +160,16 @@ public abstract class Task implements Serializable {
         }
     }
 
-    /**
-     * Return all data from a task
-     */
     public void displayTask() {
         SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
-        System.out.format("Task Id: %d | Title: %s | Description: %s | DueDate: %s | Completed: %b", id, title, description, formatter.format(dueDate), completed);
+        System.out.format("Task Id: '%s' | Title: %s | Description: %s | DueDate: %s | Completed: %b", id, title, description, formatter.format(dueDate), completed);
     }
 
     @Override
     public String toString() {
         SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
         return String.format(
-                "Task{id='%d', Title='%s', Description='%s', Due Date='%s', Completed=%b}",
+                "Task{id='%s', Title='%s', Description='%s', Due Date='%s', Completed=%b}",
                 id, title, description, formatter.format(dueDate), completed
         );
     }

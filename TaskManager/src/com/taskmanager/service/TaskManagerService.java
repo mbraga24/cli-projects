@@ -6,6 +6,7 @@ import com.taskmanager.repository.TaskManagerDAO;
 import com.taskmanager.utils.TaskSorter;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -33,7 +34,6 @@ public class TaskManagerService {
 
     private TaskManagerDAO taskManagerDAO;
     private static TaskManagerService taskManagerServiceInstance; // Static instance
-    private List<Task> tasks;
 
     public TaskManagerService() {
         taskManagerDAO = new TaskManagerDAO();
@@ -47,10 +47,10 @@ public class TaskManagerService {
         return taskManagerDAO.getAllTasks();
     }
 
-    public Task getTaskById(int taskId) {
+    public Task getTaskById(UUID taskId) {
         return returnTasks()
                 .stream()
-                .filter(t -> t.getId() == taskId)
+                .filter(t -> t.getId().equals(taskId))
                 .findFirst()
                 .orElse(null);
     }
@@ -69,24 +69,12 @@ public class TaskManagerService {
                 taskToUpdate.setCompleted(updatedTask.getCompleted());
     }
 
-    public void removeTask(int taskId) {
+    public void removeTask(UUID taskId) {
         taskManagerDAO.removeTask(taskId);
     }
 
     public void clearTasks() {
         taskManagerDAO.removeAllTasks();
-    }
-
-    public int getTaskCount() {
-        return taskManagerDAO.getTaskCount();
-    }
-
-    public Task returnTask(int taskId) {
-        return returnTasks()
-                .stream()
-                .filter(c -> c.getId() == taskId)
-                .findFirst()
-                .orElse(null);
     }
 
     public List<Task> displayByTaskType(TaskType type) {
