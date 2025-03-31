@@ -2,6 +2,7 @@ package com.taskmanager.service;
 
 import com.taskmanager.domain.model.Task;
 import com.taskmanager.domain.model.TaskType;
+import com.taskmanager.repository.TaskDataAccessService;
 import com.taskmanager.repository.TaskManagerDAO;
 import com.taskmanager.utils.TaskSorter;
 
@@ -33,16 +34,19 @@ import java.util.stream.Collectors;
 public class TaskManagerService {
 
     private TaskManagerDAO taskManagerDAO;
-    private static TaskManagerService taskManagerServiceInstance; // Static instance
 
     public TaskManagerService() {
-        taskManagerDAO = new TaskManagerDAO();
+        taskManagerDAO = new TaskDataAccessService();
     }
 
     public void addTask(Task task) {
         taskManagerDAO.saveTask(task);
     }
 
+    /**
+     * returnTasks() invoke getAllTasks from TaskFileDataAccessService class
+     * @return
+     */
     public List<Task> returnTasks() {
         return taskManagerDAO.getAllTasks();
     }

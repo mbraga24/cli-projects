@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        SetupData.initialize();
+//        SetupData.initialize();
 
         new TaskController().start();
 

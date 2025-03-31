@@ -2,33 +2,19 @@ package com.taskmanager.repository;
 
 import com.taskmanager.domain.model.Task;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class TaskManagerDAO {
+public interface TaskManagerDAO {
 
-    private static List<Task> tasks;
-    private static final int CAPACITY = 5;
+    void addTasksFromFile();
 
-    static {
-        tasks = new ArrayList<>(CAPACITY); // no need for CAPACITY - the list will dynamically grow as elements are added to it
-    }
+    void saveTask(Task task);
 
-    public void saveTask(Task task) {
-        tasks.add(task);
-    }
+    List<Task> getAllTasks();
 
-    public List<Task> getAllTasks() {
-        return tasks;
-    }
+    void removeTask(UUID taskId);
 
-    public void removeTask(UUID taskId) {
-        tasks.removeIf(t -> t.getId().equals(taskId));
-    }
-
-    public void removeAllTasks() {
-        tasks.clear();
-    }
+    void removeAllTasks();
 
 }
