@@ -2,6 +2,7 @@ package service;
 
 import com.taskmanager.domain.model.Task;
 import com.taskmanager.domain.model.WorkTask;
+import com.taskmanager.repository.TaskDataAccessService;
 import com.taskmanager.service.TaskManagerService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,7 @@ public class TaskManagerServiceTest {
     private TaskManagerService taskManagerService1;
     private TaskManagerService taskManagerService2;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    private final TaskDataAccessService taskDataAccessService = new TaskDataAccessService();
     private final PrintStream originalOut = System.out;
 
     @BeforeEach
@@ -29,8 +31,8 @@ public class TaskManagerServiceTest {
         System.setOut(new PrintStream(outputStream));
 
         // GIVEN: A TaskManager instance is initialized before each test
-        taskManagerService1 = new TaskManagerService();
-        taskManagerService2 = new TaskManagerService();
+        taskManagerService1 = new TaskManagerService(taskDataAccessService);
+        taskManagerService2 = new TaskManagerService(taskDataAccessService);
     }
 
     @AfterEach

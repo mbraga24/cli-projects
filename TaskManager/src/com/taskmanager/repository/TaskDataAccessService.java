@@ -15,6 +15,8 @@ public class TaskDataAccessService implements TaskManagerDAO {
         tasks = new ArrayList<>(CAPACITY); // no need for CAPACITY - the list will dynamically grow as elements are added to it
     }
 
+    public TaskDataAccessService() {}
+
     @Override
     public void addTasksFromFile() {
 

@@ -33,10 +33,10 @@ import java.util.stream.Collectors;
 
 public class TaskManagerService {
 
-    private TaskManagerDAO taskManagerDAO;
+    private final TaskManagerDAO taskManagerDAO;
 
-    public TaskManagerService() {
-        taskManagerDAO = new TaskDataAccessService();
+    public TaskManagerService(TaskManagerDAO taskManagerDAO) {
+        this.taskManagerDAO = new TaskDataAccessService();
     }
 
     public void addTask(Task task) {

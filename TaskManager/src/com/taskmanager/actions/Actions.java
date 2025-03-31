@@ -4,6 +4,7 @@ import com.taskmanager.domain.factory.TaskFactory;
 import com.taskmanager.domain.model.Task;
 import com.taskmanager.domain.model.TaskType;
 import com.taskmanager.io.ConsoleIO;
+import com.taskmanager.repository.TaskDataAccessService;
 import com.taskmanager.service.TaskManagerService;
 import com.taskmanager.utils.SortByDueDate;
 import com.taskmanager.utils.SortById;
@@ -20,9 +21,12 @@ import static com.taskmanager.utils.Utils.printMessageHeader;
 
 public class Actions {
 
-    private Scanner scanner = new Scanner(System.in);
-    private final ConsoleIO io = new ConsoleIO(scanner);
-    private TaskManagerService taskManagerService = new TaskManagerService();
+    Scanner scanner = new Scanner(System.in);
+    TaskDataAccessService taskDataAccessService = new TaskDataAccessService();
+
+    TaskManagerService taskManagerService = new TaskManagerService(taskDataAccessService);
+    ConsoleIO io = new ConsoleIO(scanner);
+
     private String[] mainMenuTextOptions = {
             "Add a New Task",
             "Update an Existing Task",

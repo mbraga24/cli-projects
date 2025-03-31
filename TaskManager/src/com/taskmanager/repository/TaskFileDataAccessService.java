@@ -9,9 +9,6 @@ import com.taskmanager.service.TaskManagerService;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -21,18 +18,17 @@ import java.util.UUID;
 
 public class TaskFileDataAccessService implements TaskManagerDAO {
 
-    Scanner scannerIn;
-    ConsoleIO io;
+    Scanner scannerIn = new Scanner(System.in);;
 
-    public TaskFileDataAccessService() {
-        scannerIn = new Scanner(System.in);
-        io = new ConsoleIO(scannerIn);
-    }
+    ConsoleIO io = new ConsoleIO(scannerIn);
+    TaskManagerDAO taskManagerDAO = new TaskDataAccessService();
+    TaskManagerService taskManagerService = new TaskManagerService(taskManagerDAO);
+
+    public TaskFileDataAccessService() {}
 
     @Override
     public void addTasksFromFile() {
 
-        TaskManagerService taskManagerService = new TaskManagerService();
         File file = new File("src/tasks.csv");
 
         try {

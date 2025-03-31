@@ -8,9 +8,14 @@ import static com.taskmanager.utils.Utils.printMessageHeader;
 
 public class TaskController {
 
-    Actions actions = new Actions();
-    TaskFileDataAccessService taskFileDataAccessService = new TaskFileDataAccessService();
-    private int  userInput;
+    private final Actions actions;
+    private final TaskFileDataAccessService taskFileDataAccessService;
+    private int userInput;
+
+    public TaskController(Actions actions, TaskFileDataAccessService taskFileDataAccessService) {
+        this.actions = actions;
+        this.taskFileDataAccessService = taskFileDataAccessService;
+    }
 
     public  void start() {
         taskFileDataAccessService.addTasksFromFile();
