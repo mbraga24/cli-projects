@@ -3,6 +3,7 @@ package com.taskmanager.domain.model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -165,6 +166,10 @@ public abstract class Task implements Serializable {
         System.out.format("Task Id: '%s' | Title: %s | Description: %s | DueDate: %s | Completed: %b", id, title, description, formatter.format(dueDate), completed);
     }
 
+    /**
+     * Provides a human-readable representation of the Task object,
+     * useful for debugging and logging
+     */
     @Override
     public String toString() {
         SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
@@ -172,6 +177,27 @@ public abstract class Task implements Serializable {
                 "Task{id='%s', Title='%s', Description='%s', Due Date='%s', Completed=%b, Type='%s'}",
                 id, title, description, formatter.format(dueDate), completed, getTaskType()
         );
+    }
+
+    /**
+     * Defines logical equality for User objects based on id and name.
+     * Essential for correct behavior in collections like Set or when comparing objects
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id) && Objects.equals(title, task.title);
+    }
+
+    /**
+     * Generates a consistent hash code based on id and title.
+     * Must align with equals() to ensure correct behavior in hash-based collections.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title);
     }
 
 }

@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28b34b5-cc7a-4501-8104-1857394915e5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-master-class.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmanager/domain/model/PersonalTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmanager/domain/model/PersonalTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmanager/domain/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmanager/domain/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmanager/domain/model/WorkTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmanager/domain/model/WorkTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmanager/repository/TaskFileDataAccessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmanager/repository/TaskFileDataAccessService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
