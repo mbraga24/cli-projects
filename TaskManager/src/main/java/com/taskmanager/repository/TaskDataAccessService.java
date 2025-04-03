@@ -18,9 +18,7 @@ public class TaskDataAccessService implements TaskManagerDAO {
     public TaskDataAccessService() {}
 
     @Override
-    public void addTasksFromFile() {
-
-    }
+    public void addTasksFromFile() {}
 
     public void saveTask(Task task) {
         tasks.add(task);

@@ -1,7 +1,7 @@
 package com.taskmanager.controller;
 
 import com.taskmanager.actions.Actions;
-import com.taskmanager.repository.TaskFileDataAccessService;
+import com.taskmanager.repository.TaskFakerDataAccessService;
 
 import static com.taskmanager.utils.Utils.printMessageHeader;
 
@@ -9,16 +9,16 @@ import static com.taskmanager.utils.Utils.printMessageHeader;
 public class TaskController {
 
     private final Actions actions;
-    private final TaskFileDataAccessService taskFileDataAccessService;
+    private final TaskFakerDataAccessService taskFakerDataAccessService;
     private int userInput;
 
-    public TaskController(Actions actions, TaskFileDataAccessService taskFileDataAccessService) {
+    public TaskController(Actions actions, TaskFakerDataAccessService taskFakerDataAccessService) {
         this.actions = actions;
-        this.taskFileDataAccessService = taskFileDataAccessService;
+        this.taskFakerDataAccessService = taskFakerDataAccessService;
     }
 
     public  void start() {
-        taskFileDataAccessService.addTasksFromFile();
+        taskFakerDataAccessService.addTasksFromFile();
         do {
             printMessageHeader("Task Manager CLI");
             userInput = actions.mainMenuUserInput();
