@@ -169,8 +169,8 @@ public abstract class Task implements Serializable {
     public String toString() {
         SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
         return String.format(
-                "Task{id='%s', Title='%s', Description='%s', Due Date='%s', Completed=%b}",
-                id, title, description, formatter.format(dueDate), completed
+                "Task{id='%s', Title='%s', Description='%s', Due Date='%s', Completed=%b, Type='%s'}",
+                id, title, description, formatter.format(dueDate), completed, getTaskType()
         );
     }
 

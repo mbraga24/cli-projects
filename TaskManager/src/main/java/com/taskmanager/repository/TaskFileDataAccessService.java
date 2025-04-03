@@ -29,7 +29,8 @@ public class TaskFileDataAccessService implements TaskManagerDAO {
     @Override
     public void addTasksFromFile() {
 
-        File file = new File("src/tasks.csv");
+//        File file = new File("src/tasks.csv");
+        File file = new File(getClass().getClassLoader().getResource("tasks.csv").getPath());
 
         try {
             int index = 0;

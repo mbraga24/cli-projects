@@ -37,6 +37,6 @@ public class WorkTask extends Task {
     @Override
     public void displayTask() {
         super.displayTask();
-        System.out.format(" | Project: %s\n", projectName);
+        System.out.format(" | Project: %s | Type: %s\n", projectName, String.valueOf(TaskType.WORK));
     }
 }

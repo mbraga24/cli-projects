@@ -37,7 +37,7 @@ public class PersonalTask extends Task {
     @Override
     public void displayTask() {
         super.displayTask();
-        System.out.format(" | Location: %s\n", location);
+        System.out.format(" | Location: %s | Type: %s\n", location, String.valueOf(TaskType.PERSONAL));
     }
 
 }
