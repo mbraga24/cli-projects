@@ -6,12 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="e28b34b5-cc7a-4501-8104-1857394915e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmanager/domain/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmanager/domain/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task$Builder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -30,6 +39,13 @@
     "Application.Main.executor": "Run",
     "JUnit.TaskManagerServiceTest.executor": "Run",
     "JUnit.TaskManagerServiceTest.testAddTaskAndReturnTask.executor": "Run",
+    "JUnit.TaskTest.constructor_inPersonalTask_withoutCompletedField_initializesAllTaskFieldsCorrectly.executor": "Run",
+    "JUnit.TaskTest.constructor_withCompletedField_initializesAllFieldsCorrectly.executor": "Run",
+    "JUnit.TaskTest.equals_differentClass_returnsFalse.executor": "Run",
+    "JUnit.TaskTest.equals_differentValues_returnsFalse.executor": "Run",
+    "JUnit.TaskTest.equals_sameReference_returnsTrue.executor": "Run",
+    "JUnit.TaskTest.executor": "Run",
+    "JUnit.TaskTest.toString_returnsFormattedString.executor": "Run",
     "Maven.taskmanager [test].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -38,40 +54,81 @@
     "last_opened_file_path": "C:/Users/MarlonBraga/01-WS-INTELLIJ/amigoscode/java-master-class"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="taskmanager" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TaskManagerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TaskTest">
+    <configuration name="TaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taskmanager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.taskmanager.service.*" />
+          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.taskmanager.service" />
-      <option name="MAIN_CLASS_NAME" value="com.taskmanager.service.TaskManagerServiceTest" />
+      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskManagerServiceTest.testAddTaskAndReturnTask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TaskTest.equals_differentClass_returnsFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taskmanager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.taskmanager.service.*" />
+          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.taskmanager.service" />
-      <option name="MAIN_CLASS_NAME" value="com.taskmanager.service.TaskManagerServiceTest" />
-      <option name="METHOD_NAME" value="testAddTaskAndReturnTask" />
+      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
+      <option name="METHOD_NAME" value="equals_differentClass_returnsFalse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskTest.equals_differentValues_returnsFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="taskmanager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
+      <option name="METHOD_NAME" value="equals_differentValues_returnsFalse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskTest.equals_sameReference_returnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="taskmanager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
+      <option name="METHOD_NAME" value="equals_sameReference_returnsTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskTest.toString_returnsFormattedString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="taskmanager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
+      <option name="METHOD_NAME" value="toString_returnsFormattedString" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -90,9 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.TaskManagerServiceTest.testAddTaskAndReturnTask" />
-        <item itemvalue="JUnit.TaskManagerServiceTest" />
+        <item itemvalue="JUnit.TaskTest" />
+        <item itemvalue="JUnit.TaskTest.toString_returnsFormattedString" />
+        <item itemvalue="JUnit.TaskTest.equals_differentValues_returnsFalse" />
+        <item itemvalue="JUnit.TaskTest.equals_sameReference_returnsTrue" />
+        <item itemvalue="JUnit.TaskTest.equals_differentClass_returnsFalse" />
       </list>
     </recent_temporary>
   </component>
@@ -106,5 +165,16 @@
       <updated>1743701144831</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/taskmanager/domain/model/TaskTest.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
