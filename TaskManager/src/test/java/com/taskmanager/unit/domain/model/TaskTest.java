@@ -16,7 +16,8 @@ public class TaskTest {
     Date dueDate;
     boolean completed;
     String location;
-    TaskType type;
+    TaskType personal;
+    TaskType work;
 
     @BeforeEach
     void setup() {
@@ -26,7 +27,8 @@ public class TaskTest {
         dueDate = new Date();
         completed = false;
         location = "home";
-        type = TaskType.PERSONAL;
+        personal = TaskType.PERSONAL;
+        work = TaskType.WORK;
     }
 
     @Test
@@ -34,14 +36,14 @@ public class TaskTest {
         // Given: variables assigned in the setup() method
 
         // When:
-        Task task = new PersonalTask(id, title, description, dueDate, location, type);
+        Task task = new PersonalTask(id, title, description, dueDate, location, personal);
 
         // Then:
         assertEquals(title, task.getTitle());
         assertEquals(description, task.getDescription());
         assertEquals(dueDate, task.getDueDate());
         assertEquals(location, task.getExtraDetails());
-        assertEquals(type, task.getTaskType());
+        assertEquals(personal, task.getTaskType());
     }
 
     @Test
@@ -49,7 +51,7 @@ public class TaskTest {
         // Given: variables assigned in the setup() method
 
         // When:
-        Task task = new PersonalTask(id, title, description, dueDate, completed, location, type);
+        Task task = new PersonalTask(id, title, description, dueDate, completed, location, personal);
 
         // Then:
         assertEquals(title, task.getTitle());
@@ -57,7 +59,7 @@ public class TaskTest {
         assertEquals(dueDate, task.getDueDate());
         assertEquals(completed, task.getCompleted());
         assertEquals(location, task.getExtraDetails());
-        assertEquals(type, task.getTaskType());
+        assertEquals(personal, task.getTaskType());
     }
 
     @Test
@@ -65,8 +67,8 @@ public class TaskTest {
         // Given: variables assigned in the setup() method
 
         // When:
-        Task task1 = new PersonalTask(id, title, description, dueDate, completed, location, type);
-        Task task2 = new PersonalTask(id, title, description, dueDate, completed, location, type);
+        Task task1 = new PersonalTask(id, title, description, dueDate, completed, location, personal);
+        Task task2 = new PersonalTask(id, title, description, dueDate, completed, location, personal);
 
         boolean isEquals = task1.equals(task2);
 
@@ -79,7 +81,7 @@ public class TaskTest {
         // Given: variables assigned in the setup() method
 
         // When:
-        Task task = new PersonalTask(id, title, description, dueDate, completed, location, type);
+        Task task = new PersonalTask(id, title, description, dueDate, completed, location, personal);
 
         boolean isEquals = task.equals(null);
 
@@ -92,8 +94,8 @@ public class TaskTest {
         // Given: variables assigned in the setup() method
 
         // When:
-        Task task1 = new PersonalTask(id, title, description, dueDate, completed, location, type);
-        Task task2 = new WorkTask(id, title, description, dueDate, completed, "Project Title", type);
+        Task task1 = new PersonalTask(id, title, description, dueDate, completed, location, personal);
+        Task task2 = new WorkTask(id, title, description, dueDate, completed, "Project Title", personal);
 
         boolean isEquals = task1.equals(task2);
 
@@ -106,7 +108,7 @@ public class TaskTest {
         // Given: variables assigned in the setup() method
 
         // When:
-        Task task = new PersonalTask(id, title, description, dueDate, completed, location, type);
+        Task task = new PersonalTask(id, title, description, dueDate, completed, location, personal);
 
         boolean isEquals = task.equals(task);
 
@@ -119,8 +121,8 @@ public class TaskTest {
         // Given: variables assigned in the setup() method
 
         // When:
-        Task task1 = new PersonalTask(id, title, description, dueDate, completed, location, type);
-        Task task2 = new PersonalTask(UUID.fromString("91c290cb-f86e-4213-b8f5-6ed7d481111"), "Different Title", description, dueDate, completed, location, type);
+        Task task1 = new PersonalTask(id, title, description, dueDate, completed, location, personal);
+        Task task2 = new PersonalTask(UUID.fromString("91c290cb-f86e-4213-b8f5-6ed7d481111"), "Different Title", description, dueDate, completed, location, personal);
 
         boolean isEquals = task1.equals(task2);
 
@@ -132,7 +134,7 @@ public class TaskTest {
     void toString_returnsFormattedString() {
         // Given: variables assigned in the setup() method
 
-        Task task = new PersonalTask(id, title, description, dueDate, completed, location, type);
+        Task task = new PersonalTask(id, title, description, dueDate, completed, location, personal);
         // When:
         String result = task.toString();
 

@@ -59,6 +59,13 @@ public class TaskManagerService {
                 .orElse(null);
     }
 
+    public int getTaskCount() {
+        return (int) returnTasks()
+                .stream()
+                .count();
+    }
+
+
     public void updateTask(Task updatedTask) {
         Task taskToUpdate = taskManagerDAO.getAllTasks()
                 .stream()
