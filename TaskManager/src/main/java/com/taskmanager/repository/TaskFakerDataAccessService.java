@@ -5,22 +5,22 @@ import com.taskmanager.domain.model.PersonalTask;
 import com.taskmanager.domain.model.Task;
 import com.taskmanager.domain.model.TaskType;
 import com.taskmanager.domain.model.WorkTask;
-import com.taskmanager.io.ConsoleIO;
 import com.taskmanager.service.TaskManagerService;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import java.util.UUID;
 
 public class TaskFakerDataAccessService implements TaskManagerDAO {
 
-    Scanner scanner = new Scanner(System.in);
-    ConsoleIO io = new ConsoleIO(scanner);
-    TaskManagerDAO taskManagerDAO = new TaskDataAccessService();
-    TaskManagerService taskManagerService = new TaskManagerService(taskManagerDAO);
+    private final TaskManagerService taskManagerService;
+//    TaskManagerDAO taskManagerDAO = new TaskDataAccessService();
+
+    public TaskFakerDataAccessService(TaskManagerService taskManagerService) {
+        this.taskManagerService = taskManagerService;
+    }
 
     @Override
     public void addTasksFromFile() {
