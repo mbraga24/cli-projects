@@ -27,3 +27,12 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# IntelliJ IDEA
+.idea/*
+!.idea/inspectionProfiles
+!.idea/codeStyles
+*.iml
+.idea/workspace.xml
+
+

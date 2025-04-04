@@ -5,10 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28b34b5-cc7a-4501-8104-1857394915e5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/taskmanager/unit/service/TaskManagerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task$Builder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/taskmanager/domain/model/Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmanager/repository/TaskFakerDataAccessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmanager/repository/TaskFakerDataAccessService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmanager/repository/TaskFileDataAccessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmanager/repository/TaskFileDataAccessService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/taskmanager/service/TaskManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/taskmanager/service/TaskManagerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/taskmanager/domain/model/TaskTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/taskmanager/unit/domain/model/TaskTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/taskmanager/service/TaskManagerServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/taskmanager/repository/TaskFakerDataAccessService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/taskmanager/repository/TaskFakerDataAccessService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/taskmanager/repository/TaskFileDataAccessService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/taskmanager/repository/TaskFileDataAccessService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/taskmanager/service/TaskManagerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/taskmanager/service/TaskManagerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/taskmanager/domain/model/TaskTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/taskmanager/service/TaskManagerServiceTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +37,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2vED3qMv9AcIYtlypiakiz9le9l" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -37,8 +49,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.TaskFakerDataAccessServiceIT.addTasksFromFile_addsFiveTasksToService.executor": "Run",
     "JUnit.TaskManagerServiceTest.executor": "Run",
     "JUnit.TaskManagerServiceTest.testAddTaskAndReturnTask.executor": "Run",
+    "JUnit.TaskManagerServiceTest.testUpdateTaskFailsOnId.executor": "Debug",
+    "JUnit.TaskManagerServiceTest.test_addTask.executor": "Run",
+    "JUnit.TaskManagerServiceTest.test_clearTasks.executor": "Run",
+    "JUnit.TaskManagerServiceTest.test_getTaskById.executor": "Run",
+    "JUnit.TaskManagerServiceTest.test_getTaskCount.executor": "Run",
+    "JUnit.TaskManagerServiceTest.test_listTasks_returnZeroTasks.executor": "Run",
+    "JUnit.TaskManagerServiceTest.test_removeTask.executor": "Run",
+    "JUnit.TaskManagerServiceTest.test_updateTask_updatesAllProperties.executor": "Run",
     "JUnit.TaskTest.constructor_inPersonalTask_withoutCompletedField_initializesAllTaskFieldsCorrectly.executor": "Run",
     "JUnit.TaskTest.constructor_withCompletedField_initializesAllFieldsCorrectly.executor": "Run",
     "JUnit.TaskTest.equals_differentClass_returnsFalse.executor": "Run",
@@ -54,81 +75,81 @@
     "last_opened_file_path": "C:/Users/MarlonBraga/01-WS-INTELLIJ/amigoscode/java-master-class"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.TaskTest">
-    <configuration name="TaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TaskFakerDataAccessServiceIT.addTasksFromFile_addsFiveTasksToService">
+    <configuration name="TaskFakerDataAccessServiceIT.addTasksFromFile_addsFiveTasksToService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taskmanager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
+          <option name="PATTERN" value="com.taskmanager.integration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
-      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
+      <option name="PACKAGE_NAME" value="com.taskmanager.integration" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.integration.TaskFakerDataAccessServiceIT" />
+      <option name="METHOD_NAME" value="addTasksFromFile_addsFiveTasksToService" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskManagerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="taskmanager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.taskmanager.unit.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.taskmanager.service" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.unit.service.TaskManagerServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskTest.equals_differentClass_returnsFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TaskManagerServiceTest.testUpdateTaskFailsOnId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taskmanager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
+          <option name="PATTERN" value="com.taskmanager.unit.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
-      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
-      <option name="METHOD_NAME" value="equals_differentClass_returnsFalse" />
+      <option name="PACKAGE_NAME" value="com.taskmanager.unit.service" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.unit.service.TaskManagerServiceTest" />
+      <option name="METHOD_NAME" value="testUpdateTaskFailsOnId" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskTest.equals_differentValues_returnsFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TaskManagerServiceTest.test_clearTasks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taskmanager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
+          <option name="PATTERN" value="com.taskmanager.unit.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
-      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
-      <option name="METHOD_NAME" value="equals_differentValues_returnsFalse" />
+      <option name="PACKAGE_NAME" value="com.taskmanager.service" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.unit.service.TaskManagerServiceTest" />
+      <option name="METHOD_NAME" value="test_clearTasks" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskTest.equals_sameReference_returnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TaskManagerServiceTest.test_updateTask_updatesAllProperties" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taskmanager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
+          <option name="PATTERN" value="com.taskmanager.unit.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
-      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
-      <option name="METHOD_NAME" value="equals_sameReference_returnsTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TaskTest.toString_returnsFormattedString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="taskmanager" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.taskmanager.domain.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.taskmanager.domain.model" />
-      <option name="MAIN_CLASS_NAME" value="com.taskmanager.domain.model.TaskTest" />
-      <option name="METHOD_NAME" value="toString_returnsFormattedString" />
+      <option name="PACKAGE_NAME" value="com.taskmanager.unit.service" />
+      <option name="MAIN_CLASS_NAME" value="com.taskmanager.unit.service.TaskManagerServiceTest" />
+      <option name="METHOD_NAME" value="test_updateTask_updatesAllProperties" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -147,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TaskTest" />
-        <item itemvalue="JUnit.TaskTest.toString_returnsFormattedString" />
-        <item itemvalue="JUnit.TaskTest.equals_differentValues_returnsFalse" />
-        <item itemvalue="JUnit.TaskTest.equals_sameReference_returnsTrue" />
-        <item itemvalue="JUnit.TaskTest.equals_differentClass_returnsFalse" />
+        <item itemvalue="JUnit.TaskFakerDataAccessServiceIT.addTasksFromFile_addsFiveTasksToService" />
+        <item itemvalue="JUnit.TaskManagerServiceTest.testUpdateTaskFailsOnId" />
+        <item itemvalue="JUnit.TaskManagerServiceTest.test_updateTask_updatesAllProperties" />
+        <item itemvalue="JUnit.TaskManagerServiceTest" />
+        <item itemvalue="JUnit.TaskManagerServiceTest.test_clearTasks" />
       </list>
     </recent_temporary>
   </component>
@@ -170,9 +191,57 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/taskmanager/domain/model/TaskTest.java</url>
-          <line>59</line>
+          <url>file://$PROJECT_DIR$/src/test/java/com/taskmanager/unit/domain/model/TaskTest.java</url>
+          <line>61</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/taskmanager/unit/service/TaskManagerServiceTest.java</url>
+          <line>188</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmanager/service/TaskManagerService.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmanager/service/TaskManagerService.java</url>
+          <line>73</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmanager/service/TaskManagerService.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmanager/service/TaskManagerService.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmanager/repository/TaskFakerDataAccessService.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/taskmanager/repository/TaskFakerDataAccessService.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/taskmanager/integration/TaskFakerDataAccessServiceIT.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/taskmanager/integration/TaskFakerDataAccessServiceIT.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
