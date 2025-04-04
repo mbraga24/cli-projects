@@ -1,10 +1,10 @@
-package com.taskmanager.service;
+package com.taskmanager.unit.service;
 
 import com.taskmanager.domain.model.PersonalTask;
 import com.taskmanager.domain.model.Task;
 import com.taskmanager.domain.model.TaskType;
-import com.taskmanager.repository.TaskDataAccessService;
 import com.taskmanager.repository.TaskManagerDAO;
+import com.taskmanager.service.TaskManagerService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,16 +13,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-//✅ Write unit tests for all public methods.
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 public class TaskManagerServiceTest {
 
-    private TaskManagerService taskManagerService1;
-    private TaskManagerService taskManagerService2;
-    private final TaskManagerDAO taskDataAccessService = new TaskDataAccessService();
+    TaskManagerDAO daoMock;
+    TaskManagerService taskManagerService1;
+    TaskManagerService taskManagerService2;
+
     UUID id;
     String title;
     String description;
@@ -34,6 +33,10 @@ public class TaskManagerServiceTest {
 
     @BeforeEach
     void setUp() {
+        daoMock = mock(TaskManagerDAO.class);
+        taskManagerService1 = new TaskManagerService(daoMock);
+        taskManagerService2 = new TaskManagerService(daoMock);
+
         id = UUID.fromString("91c290cb-f86e-4213-b8f5-6ed7d48f7e3f");
         title = "Buy groceries";
         description = "Milk, eggs, meat";
@@ -42,10 +45,6 @@ public class TaskManagerServiceTest {
         location = "home";
         personal = TaskType.PERSONAL;
         work = TaskType.WORK;
-
-        // GIVEN: A TaskManager instance is initialized before each test
-        taskManagerService1 = new TaskManagerService(taskDataAccessService);
-        taskManagerService2 = new TaskManagerService(taskDataAccessService);
     }
 
     @AfterEach
@@ -144,54 +143,54 @@ public class TaskManagerServiceTest {
         assertEquals(0, taskManagerService1.getTaskCount(), "clearTasks() should remove all tasks from TaskManager list");
     }
 
-//    @Test
-//    void testUpdateTaskUpdatesAllProperties() {
-//        // GIVEN: A TaskManager with one task and a new updated task
-//        String updateTitle = "UpdateTitle";
-//        String updateDescription = "updateDescription";
-//        String updateProjectName = "updateProjectName";
-//        Date updateDueDate = new Date();
-//
-//        // Existing task
-//        Task task1 = new PersonalTask("Task Title 1", "Task Description 1", new Date(), "Project Name 1");
-//        taskManagerService1.addTask(task1);
-//
-//        // Return task
-//        Task updatedTask = taskManagerService1.returnTask(task1.getId());
-//
-//        // Update properties
-//        updatedTask.setTitle(updateTitle);
-//        updatedTask.setDescription(updateDescription);
-//        updatedTask.setDueDate(updateDueDate);
-//        updatedTask.setExtraDetails(updateProjectName);
-//        updatedTask.markAsCompleted();
-//
-//        // WHEN: updateTask() is called
-//        taskManagerService1.updateTask(updatedTask);
-//
-//        // THEN: Retrieve the task again and verify it was updated in storage
-//        Task storedTask = taskManagerService1.returnTask(task1.getId());
-//
-//        assertEquals(task1.getId(), storedTask.getId(), "Task should have same ID.");
-//        assertEquals(updateTitle, storedTask.getTitle(), "Task should have same title.");
-//        assertEquals(updateDescription, storedTask.getDescription(), "Task should have same description.");
-//        assertEquals(updateDueDate, storedTask.getDueDate(), "Task should have same DueDate .");
-//        assertEquals(updateProjectName, storedTask.getExtraDetails(), "Task should have same Project Name .");
-//        assertTrue(storedTask.getCompleted(), "Task should be marked as completed.");
-//    }
-//
-//    @Test
-//    void testUpdateTaskFailsOnId() {
-//        // GIVEN: A task added to the service
-//        Task task1 = new PersonalTask("Task Title 1", "Task Description 1", new Date(), "Project Name 1");
-//
-//        // WHEN: Expect an IllegalArgumentException when trying to update
-//        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-//            taskManagerService1.updateTask(task1);
-//        });
-//
-//        // THEN: The exception thrown is the same
-//        String expectedMessage = "Task with ID " + task1.getId() + " not found.";
-//        assertEquals(expectedMessage, exception.getMessage());
-//    }
+    @Test
+    void test_updateTask_updatesAllProperties() {
+        // GIVEN: A TaskManager with one task and a new updated task
+        String updateTitle = "Update title";
+        String updateDescription = "Update description";
+        String location = "Update location";
+        Date updateDueDate = new Date();
+
+        // Existing task
+        Task task1 = new PersonalTask(id, title, description, dueDate, location, personal);
+        taskManagerService1.addTask(task1);
+
+        // Return task
+        Task taskToUpdate = taskManagerService1.getTaskById(task1.getId());
+
+        // Update properties
+        taskToUpdate.setTitle(updateTitle);
+        taskToUpdate.setDescription(updateDescription);
+        taskToUpdate.setDueDate(updateDueDate);
+        taskToUpdate.setExtraDetails(location);
+        taskToUpdate.markAsCompleted();
+
+        // WHEN: updateTask() is called
+        taskManagerService1.updateTask(taskToUpdate);
+
+        // THEN: Retrieve the task again and verify it was updated in storage
+        Task updatedTask = taskManagerService1.getTaskById(task1.getId());
+
+        assertEquals(task1.getId(), updatedTask.getId(), "Task should have same ID.");
+        assertEquals(updateTitle, updatedTask.getTitle(), "Task should have same title.");
+        assertEquals(updateDescription, updatedTask.getDescription(), "Task should have same description.");
+        assertEquals(updateDueDate, updatedTask.getDueDate(), "Task should have same DueDate .");
+        assertEquals(location, updatedTask.getExtraDetails(), "Task should have same Project Name .");
+        assertTrue(updatedTask.getCompleted(), "Task should be marked as completed.");
+    }
+
+    @Test
+    void testUpdateTaskFailsOnId() {
+        // GIVEN: A task added to the service
+        Task task1 = new PersonalTask(id, title, description, dueDate, location, personal);
+
+        // WHEN: Expect an IllegalArgumentException when trying to update
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            taskManagerService1.updateTask(task1);
+        });
+
+        // THEN: The exception thrown is the same
+        String expectedMessage = "Task with ID " + task1.getId() + " not found.";
+        assertEquals(expectedMessage, exception.getMessage());
+    }
 }

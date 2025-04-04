@@ -1,5 +1,9 @@
-package com.taskmanager.domain.model;
+package com.taskmanager.unit.domain.model;
 
+import com.taskmanager.domain.model.PersonalTask;
+import com.taskmanager.domain.model.Task;
+import com.taskmanager.domain.model.TaskType;
+import com.taskmanager.domain.model.WorkTask;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
